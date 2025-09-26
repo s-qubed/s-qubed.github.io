@@ -12,11 +12,11 @@ for mp4 in videos_dir.glob("**/*.mp4"):
     if jpg_path.exists():
         continue
 
-    # Extract the very first frame (at 0.1 s for reliability)
+    # Extract the very last frame
     cmd = [
         "ffmpeg", "-loglevel", "error",
+        "-sseof", "-1",  # seek to 1 second before end
         "-i", str(mp4),
-        "-ss", "0.1",  # seek
         "-vframes", "1",
         "-q:v", "2",   # quality 2 (~95%)
         str(jpg_path)

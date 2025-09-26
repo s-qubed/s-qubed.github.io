@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>WoMAP: World Models For Embodied Open-Vocabulary Object Localization</title>
+    <title>How Confident are Video Models? Empowering Video Models to Express their Uncertainty</title>
 
     <!--  =====  FONTS & ICONS  =====  -->
     <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet" />
@@ -209,6 +209,10 @@
 
         /* tighten above BibTeX */
     </style>
+
+    <!--  =====  Latex  =====  -->
+    <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> -->
 </head>
 
 <body>
@@ -217,44 +221,37 @@
     <section class="hero section">
         <div class="hero-body">
             <div class="container is-max-widescreen has-text-centered">
-                <h1 class="title is-2 publication-title">WoMAP: World Models For Embodied <br /> Open-Vocabulary Object
-                    Localization
+                <h1 class="title is-2 publication-title">
+                    <div style="display: flex; align-items: center; justify-content: center;">
+                        <div style="flex: 0 0 18%; text-align: center;">
+                            <img src="static/icon.gif" alt="Icon" style="height: 3.5em; max-width: 100%;">
+                        </div>
+                        <div style="flex: 0 0 82%; text-align: left;">
+                            How Confident are Video Models?  <br /> <span style="font-size: xx-large;"> Empowering Video Models to Express their Uncertainty </span>
+                        </div>
+                    </div>
                 </h1>
 
                 <!-- ===== AUTHORS (three rows, no underscores) ===== -->
 
                 <div class="is-size-5 publication-authors">
-                    <div>
-                        <span class="author-block"><a
-                                href="https://tenny-yinyijun.github.io/">Tenny&nbsp;Yin*</a></span>,
-                        <span class="author-block"><a href="https://may0mei.github.io/">Zhiting&nbsp;Mei</a></span>,
-                        <span class="author-block"><a href="#">Tao&nbsp;Sun</a></span>,
-                        <span class="author-block"><a href="https://lihzha.github.io/">Lihan&nbsp;Zha</a></span>,
-                        <span class="author-block"><a
-                                href="https://www.linkedin.com/in/zhou-emily/">Emily&nbsp;Zhou<sup>+</sup></a></span>,
-                    </div>
-                    <div>
-                        <span class="author-block"><a
-                                href="https://www.linkedin.com/in/jeremy-bao/">Jeremy&nbsp;Bao<sup>+</sup></a></span>,
-                        <span class="author-block"><a
-                                href="https://www.linkedin.com/in/miyu-yamane/">Miyu&nbsp;Yamane<sup>+</sup></a></span>,
+                    <div>   
+                        <span class="author-block"><a href="https://may0mei.github.io/">Zhiting&nbsp;Mei*</a></span>,
                         <span class="author-block"><a href="#">Ola&nbsp;Shorinwa*</a></span>,
                         <span class="author-block"><a
                                 href="https://irom-lab.princeton.edu/majumdar/">Anirudha&nbsp;Majumdar</a></span>
                     </div>
                 </div>
-
                 <div>
                     <sup>&#42;</sup>Equal Contribution.
-                    <sup>+</sup>Authors contributed equally.
                 </div>
 
-                <!-- ===== RESOURCE ICONS ===== -->
+                <!-- ===== RESOURCE ICONS ===== --> <!-- TODO -->
                 <div class="publication-links">
                     <a href="static/paper.pdf" class="external-link button is-normal is-rounded is-dark" target="_blank"
                         rel="noopener">
                         <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span>
-                    </a>
+                    </a> 
                     <a href="https://arxiv.org/abs/2506.01600" class="external-link button is-normal is-rounded is-dark"
                         target="_blank" rel="noopener">
                         <span class="icon"><i class="ai ai-arxiv"></i></span><span>arXiv</span>
@@ -287,9 +284,8 @@
                 Your browser does not support the video tag.
             </video>
             <p style="margin-top:1rem;">We introduce
-                <strong>World&nbsp;Models&nbsp;for&nbsp;Active&nbsp;Perception&nbsp;(WoMAP)</strong>, a recipe for
-                training
-                open-vocabulary object localization policies that are grounded in the physical world.
+                <strong>Semantically-Quantifying&nbsp;Uncertainty&nbsp;with&nbsp;Bayesin&nbsp;Decomposition (S-QUBED)</strong>, a method to
+                quantify the uncertainty for generative video models.
             </p>
         </div>
     </section>
@@ -299,29 +295,26 @@
         <div class="container is-max-desktop content-container">
             <h2 class="title is-3 has-text-centered">Abstract</h2>
             <p>
-                Language-instructed active object localization remains a critical challenge for robots, requiring
-                efficient
-                exploration of partially observable environments. However, state-of-the-art approaches either struggle
-                to
-                generalize beyond demonstration datasets (e.g., imitation learning methods) or fail to generate
-                physically
-                grounded actions (e.g., VLMs). To address these limitations, we introduce
-                <strong>World&nbsp;Models&nbsp;for&nbsp;Active&nbsp;Perception&nbsp;(WoMAP)</strong>: a recipe for
-                training
-                open-vocabulary object localization policies that: (i) uses a Gaussian Splatting-based
-                real-to-sim-to-real
-                pipeline for scalable data generation without the need for expert demonstrations, (ii) distills dense
-                rewards
-                signals from open-vocabulary object detectors, and (iii) leverages a latent world model for dynamics and
-                rewards
-                prediction to ground high-level action proposals at inference time. Rigorous simulation and hardware
-                experiments
-                demonstrate WoMAP's superior performance in a broad range of zero-shot object localization tasks, with
-                more than
-                <strong>9x</strong> and <strong>2x</strong> higher success rates compared to VLM and diffusion policy
-                baselines,
-                respectively. Further, we show that WoMAP achieves strong generalization and sim-to-real transfer on a
-                TidyBot.
+                Generative video models demonstrate impressive text-to-video capabilities,
+                spurring widespread adoption in many real-world applications. However, like
+                large language models (LLMs), video generation models tend to hallucinate, pro-
+                ducing plausible videos even when they are factually wrong. Although uncertainty
+                quantification (UQ) of LLMs has been extensively studied in prior work, no UQ
+                method for video models exists, raising critical safety concerns. To our knowl-
+                edge, this paper represents the first work towards quantifying the uncertainty of
+                video models. We present a framework for uncertainty quantification of generative
+                video models, consisting of: (i) a metric for evaluating the calibration of video
+                models based on robust rank correlation estimation with no stringent modeling
+                assumptions; (ii) a black-box UQ method for video models (termed S-QUBED),
+                which leverages latent modeling to rigorously decompose predictive uncertainty
+                into its aleatoric and epistemic components; and (iii) a UQ dataset to facilitate
+                benchmarking calibration in video models, which will be released after the review
+                process. By conditioning the generation task in the latent space, we disentangle
+                uncertainty arising due to vague task specifications from that arising from lack
+                of knowledge. Through extensive experiments on benchmark video datasets, we
+                demonstrate that S-QUBED computes calibrated total uncertainty estimates that are
+                negatively correlated with the task accuracy and effectively computes the aleatoric
+                and epistemic constituents.
             </p>
             <!-- <br>
       <video id="summary-video" class="shadow" controls preload="metadata" width="100%" poster="static/thumbnails/talk_video.jpg">
@@ -331,64 +324,132 @@
         </div>
     </section>
 
-    <!-- ===== DATA COLLECTION ===== -->
-    <section id="data-collection" class="section">
+    <!-- ===== Architecture ===== -->
+    <section id="architecture" class="section">
         <div class="container is-max-desktop content-container">
-            <h2 class="title is-3 has-text-centered">Scalable Data Collection</h2>
-            <video class="overview-video" autoplay loop muted playsinline poster="static/thumbnails/gaussian-splat.jpg">
-                <source src="static/videos/overviews/gaussian-splat.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-            </video>
-            <br>
-            <p>
-                We introduce a scalable real-to-sim-to-real data generation pipeline that utilizes only a few real-world
-                videos
-                to train Gaussian Splats, render novel observations from sampled camera positions, and annotate each
-                observation
-                with a pretrained object detector to offer dense training signals.
-            </p>
-        </div>
-    </section>
-
-    <!-- ===== WORLD MODEL ===== -->
-    <section id="world-model-design" class="section">
-        <div class="container is-max-desktop content-container">
-            <h2 class="title is-3 has-text-centered">World Model Design</h2>
+            <h2 class="title is-3 has-text-centered">S-QUBED Method</h2>
             <video class="overview-video" autoplay loop muted playsinline poster="static/thumbnails/architecture.jpg">
                 <source src="static/videos/overviews/architecture.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
             <br>
             <p>
-                We propose a world model architecture that combines a latent dynamics model with a reward model to
-                predict and evaluate expected rewards given actions, thereby grounding high-level action proposals in
-                the physical world.
-                A central innovation of our pipeline is the use of dense reward distillation from open-vocabulary object
-                detectors,
-                which allows for data-efficient training without relying on image reconstruction objectives.
+            Given a text prompt <img src="static/images/l.svg" alt="ℓ" style="display: inline; height: 1em; vertical-align: baseline;">, our goal is to quantify the uncertainty
+            of the video generation model. We first generate n latent prompts consistent with <img src="static/images/l.svg" alt="ℓ" style="display: inline; height: 1em; vertical-align: baseline;"> in line with the
+            prompt refinement used by video models, modeling the aleatoric uncertainty as the entropy of the
+            distribution over latent prompts. Then, for each latent prompt, we generate m videos, modeling the
+            epistemic uncertainty as the conditional entropy of the distribution over generated videos. Finally,
+            aggregating the two types of uncertainties yields the total predictive uncertainty.
             </p>
         </div>
+        
+        <!-- ===== Aleatoric ===== -->
+        <div class="container is-max-desktop content-container">
+            <h3 class="title is-4 has-text-centered" style="margin-top: 3rem;">Aleatoric Uncertainty</h3>
+                <p>
+                    Aleatoric uncertainty encompasses irreducible randomness from the vagueness (lack of sufficient
+                    specificity) of the conditioning inputs, e.g., “generate a video of a cat doing something.” In video
+                    generation, vagueness in the input prompt increases the randomnes of the generation of latent prompts.
+                </p>
+                <div style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
+                    <div style="flex: 0 0 40%; text-align: center; margin: 0 1rem;">
+                        <video class="thumb-video" autoplay loop muted playsinline
+                            poster="static/thumbnails/overviews/cat_doing_something_0.jpg" preload="metadata">
+                            <source src="static/videos/overviews/cat_doing_something_0.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                    <div style="flex: 0 0 40%; text-align: center; margin: 0 1rem;">
+                        <video class="thumb-video" autoplay loop muted playsinline
+                            poster="static/thumbnails/overviews/cat_doing_something_1.jpg" preload="metadata">
+                            <source src="static/videos/overviews/cat_doing_something_1.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                </div>
+                    <p style="text-align: left;"><strong>High aleatoric unc:</strong> "Generate a video of a cat doing something."</p>
+                <div style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
+                    <div style="flex: 0 0 40%; text-align: center; margin: 0 1rem;">
+                        <video class="thumb-video" autoplay loop muted playsinline
+                            poster="static/thumbnails/overviews/cat_napping_0.jpg" preload="metadata">
+                            <source src="static/videos/overviews/cat_napping_0.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                    <div style="flex: 0 0 40%; text-align: center; margin: 0 1rem;">
+                        <video class="thumb-video" autoplay loop muted playsinline
+                            poster="static/thumbnails/overviews/cat_napping_1.jpg" preload="metadata">
+                            <source src="static/videos/overviews/cat_napping_1.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                </div>
+                <p style="text-align: left;"><strong>Low aleatoric unc:</strong> "A close-up shot of a tabby cat napping on a couch with lots of sunlight coming in through the windows."</p>
+            </div>
+
+        <!-- ===== Epistemic ===== -->
+        <div class="container is-max-desktop content-container">
+            <h3 class="title is-4 has-text-centered" style="margin-top: 3rem;">Epistemic Uncertainty</h3>
+
+                <p>
+                    Epistemic uncertainty represents the measure of doubt associated with a lack of knowledge, which
+                    generally results from insufficient training data. 
+                    As a result, epistemic uncertainty isreducible by providing additional training data to the model.
+                    For example, consider a video model trained entirely on internet videos of cats and dogs performing
+                    different activities, e.g., running, eating, jumping, meowing/barking. Now, when asked to generate a
+                    video of “a lion roaring in the wild”, the video model might generate different videos across different
+                    runs, with some showing a large cat meowing in a park with significant tree canopy, others showing a
+                    cat making barking-like sounds in a forest, etc. Although the generated videos are all conditioned
+                    on semantically-consistent latent variables, the generated videos might be semantically-inconsistent,
+                    since the video model has not been trained on videos of lions.
+                </p>
+                <div style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
+                    <div style="flex: 0 0 40%; text-align: center; margin: 0 1rem;">
+                        <video class="thumb-video" autoplay loop muted playsinline
+                            poster="static/thumbnails/overviews/violet_0.jpg" preload="metadata">
+                            <source src="static/videos/overviews/violet_0.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                    <div style="flex: 0 0 40%; text-align: center; margin: 0 1rem;">
+                        <video class="thumb-video" autoplay loop muted playsinline
+                            poster="static/thumbnails/overviews/violet_1.jpg" preload="metadata">
+                            <source src="static/videos/overviews/violet_1.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                </div>
+                    <p style="text-align: left;"><strong>High epistemic unc:</strong> "Generate a video of Violet Evergarden walking with an umbrella."</p>
+                <div style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
+                    <div style="flex: 0 0 40%; text-align: center; margin: 0 1rem;">
+                        <video class="thumb-video" autoplay loop muted playsinline
+                            poster="static/thumbnails/luffy_0/.jpg" preload="metadata">
+                            <source src="static/videos/overviews/luffy_0.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                    <div style="flex: 0 0 40%; text-align: center; margin: 0 1rem;">
+                        <video class="thumb-video" autoplay loop muted playsinline
+                            poster="static/thumbnails/overviews/luffy_1.jpg" preload="metadata">
+                            <source src="static/videos/overviews/luffy_1.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                </div>
+                <p style="text-align: left;"><strong>Low epistemic unc:</strong> "Generate a video of Luffy walking with an umbrella."</p>
+            </div>
+        </div>
+
     </section>
 
-    <!-- ===== EXPERIMENT RESULTS ===== -->
+
+
+    <!-- ===== TODO ===== -->
+
+    <!-- ===== Experiments ===== -->
     <section id="experiment-results" class="section">
         <div class="container is-max-desktop content-container">
             <h2 class="title is-3 has-text-centered">Experiments</h2>
             <p class="has-text-justified">
-                We benchmark WoMAP against a VLM-based planner (VLM), diffusion policy (DP), and three world-model-only
-                planners: WM-CEM,
-                WM-Grad, and WM-HR, in seven challenging PyBullet (PB) and Gaussian Splatting (GS) environments, where
-                the robot must
-                efficeintly locate the query object from an arbitrary initial view in an unseen scene configuration.
-                In all tasks, WoMAP attains higher success rates and efficiency scores compared to all other methods.
-                Even when only trained on Gaussian Splat simulation, WoMAP achieves strong
-                sim-to-real transfer compared to baseline (see the paper for more details).
+
             </p>
             <br>
 
             <!-- ===== PyBullet Evaluations ===== -->
             <div class="task-block" id="pybullet-1">
-                <h3 class="title is-4 task-title">PyBullet Simulation Experiments</h3>
+                <h3 class="title is-4 task-title">How do we evaluate uncertainty calibration of video models?</h3>
                 <div class="task-carousel">
                     <!-- Six videos with poster extracted via Python script -->
                     <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
@@ -421,16 +482,14 @@
                 <!-- Performance plot -->
                 <img src="./static/images/pybullet_results.png" class="real-exp-img" alt="PyBullet Evaluation." />
                 <p class="has-text-justified">
-                    *Success rates and efficiency scores are represented by transparent and solid bars, respectively.
-                    Results are presented in the order of increasing difficulty and initial-pose
-                    conditions: easy (E), medium (M), and hard (H).
+
                 </p>
             </div>
 
 
             <!-- ===== Gaussian Splatting Evaluations ===== -->
             <div class="task-block" id="gsplat-1">
-                <h3 class="title is-4 task-title">Gaussian Splat Simulation Experiments</h3>
+                <h3 class="title is-4 task-title">Are the total predictive uncertainty estimates computed by S-QUBED calibrated?</h3>
                 <div class="task-carousel">
                     <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
                             poster="static/thumbnails/experiments/gs/0-annotated.jpg" preload="metadata">
@@ -465,12 +524,8 @@
 
             <!-- ===== Real-World Evaluations ===== -->
             <div class="task-block" id="sim-to-real-1">
-                <h3 class="title is-4 task-title">Zero-Shot Sim-to-Real Transfer</h3>
+                <h3 class="title is-4 task-title">Can S-QUBED effectively estimate both aleatoric and epistemic uncertainty?</h3>
                 <p>
-                    We evaluate WoMAP's sim-to-real transfer ability on 20 hardware trials for each of the 3
-                    corresponding real-world tasks on the TidyBot. Despite trained entirely in Gaussan Splat simulation,
-                    WoMAP transfers effectively to the real world, maintaining nearly the same success rate and
-                    efficiency scores in simulation, with a worst-case performance drop of 23%.
                 </p>
                 <br>
                 <div class="task-carousel-exp">
@@ -509,133 +564,13 @@
         </div>
     </section>
 
-    <!-- ===== GENERALIZATION PROPERTIES ===== -->
-    <section id="generalization-properties" class="section">
-        <div class="container is-max-desktop content-container">
-            <h2 class="title is-3 has-text-centered">Zero-Shot Generalization</h2>
-            <!-- ===== Visual Generalization ===== -->
-            <div class="visual-generalization-block" id="vis-gen-1">
-                <h3 class="title is-4 task-title">Visual Generalization</h3>
-                <p class="has-text-justified">
-                    We evaluate WoMAP in out-of-distribution lighting and background conditions with the model trained
-                    on nominal conditions in simulation, demonstrating the robustness of our dynamics and rewards
-                    prediction module, and the rich visual-semantic information encoded in the latent state.
-                </p>
-                <br>
-                <div class="task-carousel-exp">
-                    <div class="video-thumb"><video class="thumb-video" controls onloadstart="this.playbackRate = 1.0;"
-                            autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/visual_generalization/0-annotated.jpg"
-                            preload="metadata">
-                            <source src="static/videos/experiments/visual_generalization/0-annotated.mp4"
-                                type="video/mp4" />
-                        </video></div>
-                    <div class="video-thumb"><video class="thumb-video" controls onloadstart="this.playbackRate = 1.0;"
-                            autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/visual_generalization/1-annotated.jpg"
-                            preload="metadata">
-                            <source src="static/videos/experiments/visual_generalization/1-annotated.mp4"
-                                type="video/mp4" />
-                        </video></div>
-                    <div class="video-thumb"><video class="thumb-video" controls onloadstart="this.playbackRate = 1.0;"
-                            autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/visual_generalization/2-annotated.jpg"
-                            preload="metadata">
-                            <source src="static/videos/experiments/visual_generalization/2-annotated.mp4"
-                                type="video/mp4" />
-                        </video></div>
-                    <div class="video-thumb"><video class="thumb-video" controls onloadstart="this.playbackRate = 1.0;"
-                            autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/visual_generalization/3-annotated.jpg"
-                            preload="metadata">
-                            <source src="static/videos/experiments/visual_generalization/3-annotated.mp4"
-                                type="video/mp4" />
-                        </video></div>
-                    <div class="video-thumb"><video class="thumb-video" controls onloadstart="this.playbackRate = 1.0;"
-                            autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/visual_generalization/4-annotated.jpg"
-                            preload="metadata">
-                            <source src="static/videos/experiments/visual_generalization/4-annotated.mp4"
-                                type="video/mp4" />
-                        </video></div>
-                </div>
-            </div>
-            <br>
-            <br>
-
-            <!-- ===== Semantic Generalization ===== -->
-            <div class="semantic-generalization-block" id="sem-gen-1">
-                <h3 class="title is-4 task-title">Semantic Generalization</h3>
-                <p class="has-text-justified">
-                    We evaluate WoMAP to unseen target objects and task instructions across two axes:
-                    (i) unseen language instructions for finding target objects that were seen during training, and (ii)
-                    unseen
-                    target objects with unseen language instructions.
-                    WoMAP achieves strong zero-shot semantic generalization, and we observe a positive correlation in
-                    semantic similarity (cosine
-                    distance) of the objects/queries with the most similar object present in our training objects.
-                </p>
-                <br>
-
-                <div class="task-carousel-exp">
-                    <div class="video-thumb"><video class="thumb-video" controls onloadstart="this.playbackRate = 1.0;"
-                            autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/semantic_generalization/0-annotated.jpg"
-                            preload="metadata">
-                            <source src="static/videos/experiments/semantic_generalization/0-annotated.mp4"
-                                type="video/mp4" />
-                        </video></div>
-                    <div class="video-thumb"><video class="thumb-video" controls onloadstart="this.playbackRate = 1.0;"
-                            autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/semantic_generalization/1-annotated.jpg"
-                            preload="metadata">
-                            <source src="static/videos/experiments/semantic_generalization/1-annotated.mp4"
-                                type="video/mp4" />
-                        </video></div>
-                    <div class="video-thumb"><video class="thumb-video" controls onloadstart="this.playbackRate = 1.0;"
-                            autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/semantic_generalization/2-annotated.jpg"
-                            preload="metadata">
-                            <source src="static/videos/experiments/semantic_generalization/2-annotated.mp4"
-                                type="video/mp4" />
-                        </video></div>
-                    <div class="video-thumb"><video class="thumb-video" controls onloadstart="this.playbackRate = 1.0;"
-                            autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/semantic_generalization/3-annotated.jpg"
-                            preload="metadata">
-                            <source src="static/videos/experiments/semantic_generalization/3-annotated.mp4"
-                                type="video/mp4" />
-                        </video></div>
-                    <div class="video-thumb"><video class="thumb-video" controls onloadstart="this.playbackRate = 1.0;"
-                            autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/semantic_generalization/4-annotated.jpg"
-                            preload="metadata">
-                            <source src="static/videos/experiments/semantic_generalization/4-annotated.mp4"
-                                type="video/mp4" />
-                        </video></div>
-                </div>
-                <br>
-                <!-- Semantic generalization performance plot -->
-                <img src="./static/images/semantic_generalization_banana_scissors_mug.jpg"
-                    alt="Semantic Generalization." />
-            </div>
-        </div>
-        </div>
-    </section>
 
 
     <section class="section" id="BibTeX">
         <div class="container is-max-desktop content">
             <h2 class="title">BibTeX</h2>
-            <pre><code>@misc{yin2025womapworldmodel,
-    title={WoMAP: World Models For Embodied Open-Vocabulary Object Localization}, 
-    author={Tenny Yin and Zhiting Mei and Tao Sun and Lihan Zha and Emily Zhou and Jeremy Bao and Miyu Yamane and Ola Shorinwa and Anirudha Majumdar},
-    year={2025},
-    eprint={2506.01600},
-    archivePrefix={arXiv},
-    primaryClass={cs.RO},
-    url={https://arxiv.org/abs/2506.01600}, 
-}
+            <pre><code>
+
         </code></pre>
         </div>
     </section>
