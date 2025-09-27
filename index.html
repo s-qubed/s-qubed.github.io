@@ -248,17 +248,17 @@
 
                 <!-- ===== RESOURCE ICONS ===== --> <!-- TODO -->
                 <div class="publication-links">
-                    <a href="static/paper.pdf" class="external-link button is-normal is-rounded is-dark" target="_blank"
+                    <a href="#" class="external-link button is-normal is-rounded is-dark" target="_blank"
                         rel="noopener">
-                        <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span>
+                        <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper (Coming Soon!)</span>
                     </a> 
-                    <a href="https://arxiv.org/abs/2506.01600" class="external-link button is-normal is-rounded is-dark"
+                    <a href="#" class="external-link button is-normal is-rounded is-dark"
                         target="_blank" rel="noopener">
-                        <span class="icon"><i class="ai ai-arxiv"></i></span><span>arXiv</span>
+                        <span class="icon"><i class="ai ai-arxiv"></i></span><span>arXiv (Coming Soon!)</span>
                     </a>
-                    <a href="https://www.youtube.com/watch?v=i1qSlALio-o"
+                    <a href="#"
                         class="external-link button is-normal is-rounded is-dark" target="_blank" rel="noopener">
-                        <span class="icon"><i class="fab fa-youtube"></i></span><span>Video</span>
+                        <span class="icon"><i class="fab fa-youtube"></i></span><span>Video (Coming Soon!)</span>
                     </a>
                     <a href="#" class="external-link button is-normal is-rounded is-dark" target="_blank"
                         rel="noopener">
@@ -447,9 +447,11 @@
             </p>
             <br>
 
-            <!-- ===== PyBullet Evaluations ===== -->
-            <div class="task-block" id="pybullet-1">
+            <!-- ===== Q1: Metric ===== -->
+            <div class="task-block" id="q1">
                 <h3 class="title is-4 task-title">How do we evaluate uncertainty calibration of video models?</h3>
+                <!-- Result plot-->
+                <img src="./static/images/rank_correlation.png" class="real-exp-img" alt="Calibration Plot." />
                 <div class="task-carousel">
                     <!-- Six videos with poster extracted via Python script -->
                     <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
@@ -487,9 +489,11 @@
             </div>
 
 
-            <!-- ===== Gaussian Splatting Evaluations ===== -->
-            <div class="task-block" id="gsplat-1">
+            <!-- ===== Q2: Total Unc ===== -->
+            <div class="task-block" id="q2">
                 <h3 class="title is-4 task-title">Are the total predictive uncertainty estimates computed by S-QUBED calibrated?</h3>
+                <!-- Result plot-->
+                <img src="./static/images/total_pred_unc.png" class="real-exp-img" alt="Calibration Plot." />
                 <div class="task-carousel">
                     <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
                             poster="static/thumbnails/experiments/gs/0-annotated.jpg" preload="metadata">
@@ -522,12 +526,11 @@
                 <img src="./static/images/gsplat_results.png" class="real-exp-img" alt="PyBullet Evaluation." />
             </div>
 
-            <!-- ===== Real-World Evaluations ===== -->
-            <div class="task-block" id="sim-to-real-1">
+            <!-- ===== Q3: Decomposition ===== -->
+            <div class="task-block" id="q3">
                 <h3 class="title is-4 task-title">Can S-QUBED effectively estimate both aleatoric and epistemic uncertainty?</h3>
-                <p>
-                </p>
-                <br>
+                <!-- Result plot-->
+                <img src="./static/images/decomposed_pred_unc.png" class="real-exp-img" alt="Calibration Plot." />
                 <div class="task-carousel-exp">
                     <div class="video-thumb"><video class="thumb-video" controls onloadstart="this.playbackRate = 1.0;"
                             autoplay loop muted playsinline
