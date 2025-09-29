@@ -452,40 +452,93 @@
                 <h3 class="title is-4 task-title">How do we evaluate uncertainty calibration of video models?</h3>
                 <!-- Result plot-->
                 <img src="./static/images/rank_correlation.png" class="real-exp-img" alt="Calibration Plot." />
+
+                <p class="has-text-justified" style="margin-top: 1rem; margin-bottom: 1rem;">
+                    Calibration Metrics for Video Models. Top: We examine the statistical significance of
+                    the Kendall rank correlation between uncertainty and widely-used perceptual metrics. We find that
+                    the CLIP cosine similarity score provides the most significant correlation. Bottom: With the CLIP
+                    accuracy metric, we observe that low human-annotated uncertainty corresponds to smaller variance
+                    in the generated videos and greater accuracy with respect to the ground-truth video. As uncertainty
+                    increases, video prediction accuracy decreases.
+                </p>
+
+
+                <h5 class="title is-6 task-title">Ground-Truth Videos</h5>
                 <div class="task-carousel">
-                    <!-- Six videos with poster extracted via Python script -->
+                    <!-- Six videos with poster extracted via Python script --> 
+                    <!--TODO: fix video caption style-->
+                    <!--TODO: add more videos-->
                     <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/pb/0-annotated.jpg" preload="metadata">
-                            <source src="static/videos/experiments/pb/0-annotated.mp4" type="video/mp4" />
-                        </video></div>
+                        poster="static/thumbnails/experiments/metric/moon/0001404_00000.jpg" preload="metadata">
+                        <source src="static/videos/experiments/metric/moon/0001404_00000.mp4" type="video/mp4" /></video>
+                        <p>"A close up of a moon with holes in it."</p>
+                    </div>
                     <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/pb/1-annotated.jpg" preload="metadata">
-                            <source src="static/videos/experiments/pb/1-annotated.mp4" type="video/mp4" />
-                        </video></div>
+                        poster="static/thumbnails/experiments/metric/blender/0000702_00002.jpg" preload="metadata">
+                        <source src="static/videos/experiments/metric/blender/0000702_00002.mp4" type="video/mp4" /></video>
+                        <p>"A blender filled with sliced oranges on a counter."</p>
+                    </div>
+                    <!-- <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
+                        poster="static/thumbnails/experiments/powder/0000710_00000.jpg" preload="metadata">
+                        <source src="static/videos/experiments/metric/powder/0000710_00000.mp4" type="video/mp4" /></video>
+                        <p>"There is a white powdery substance in a bowl with the word "flour" written on it."</p>
+                    </div> -->
                     <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/pb/2-annotated.jpg" preload="metadata">
-                            <source src="static/videos/experiments/pb/2-annotated.mp4" type="video/mp4" />
-                        </video></div>
-                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/pb/3-annotated.jpg" preload="metadata">
-                            <source src="static/videos/experiments/pb/3-annotated.mp4" type="video/mp4" />
-                        </video></div>
-                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/pb/4-annotated.jpg" preload="metadata">
-                            <source src="static/videos/experiments/pb/4-annotated.mp4" type="video/mp4" />
-                        </video></div>
-                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/pb/5-annotated.jpg" preload="metadata">
-                            <source src="static/videos/experiments/pb/5-annotated.mp4" type="video/mp4" />
-                        </video></div>
+                        poster="static/thumbnails/experiments/metric/game/0001302_00000.jpg" preload="metadata">
+                        <source src="static/videos/experiments/metric/game/0001302_00000.mp4" type="video/mp4" /></video>
+                        <p>"A video game screen showing a list of items."</p>
+                    </div>
                 </div>
                 <br>
 
-                <!-- Performance plot -->
-                <img src="./static/images/pybullet_results.png" class="real-exp-img" alt="PyBullet Evaluation." />
-                <p class="has-text-justified">
+                <h5 class="title is-6 task-title">Generated Videos</h5>
+                <div class="task-carousel">
+                    <!-- Six videos with poster extracted via Python script -->
+                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
+                        poster="static/thumbnails/experiments/metric/moon/0001404_00000/latent_2/videos/gen_video_226.jpg" preload="metadata">
+                        <source src="static/videos/experiments/metric/moon/0001404_00000/latent_2/videos/gen_video_226.mp4" type="video/mp4" /></video>
+                    </div>
+                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
+                        poster="static/thumbnails/experiments/metric/blender/0000702_00002latent_0/videos/gen_video_100.jpg" preload="metadata">
+                        <source src="static/videos/experiments/metric/blender/0000702_00002/latent_0/videos/gen_video_100.mp4" type="video/mp4" /></video>
+                    </div>
+                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
+                        poster="static/thumbnails/experiments/metric/game/0001302_00000/latent_0/videos/gen_video_201.jpg" preload="metadata">
+                        <source src="static/videos/experiments/metric/game/0001302_00000/latent_0/videos/gen_video_201.mp4" type="video/mp4" /></video>
+                    </div>
+                </div>
+                <div class="task-carousel">
+                    <!-- Six videos with poster extracted via Python script -->
+                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
+                        poster="static/thumbnails/experiments/metric/moon/0001404_00000/latent_7/videos/gen_video_274.jpg" preload="metadata">
+                        <source src="static/videos/experiments/metric/moon/0001404_00000/latent_7/videos/gen_video_274.mp4" type="video/mp4" /></video>
+                    </div>
+                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
+                        poster="static/thumbnails/experiments/metric/blender/0000702_00002latent_1/videos/gen_video_110.jpg" preload="metadata">
+                        <source src="static/videos/experiments/metric/blender/0000702_00002/latent_1/videos/gen_video_110.mp4" type="video/mp4" /></video>
+                    </div>
+                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
+                        poster="static/thumbnails/experiments/metric/game/0001302_00000/latent_1/videos/gen_video_210.jpg" preload="metadata">
+                        <source src="static/videos/experiments/metric/game/0001302_00000/latent_1/videos/gen_video_210.mp4" type="video/mp4" /></video>
+                    </div>
+                </div>
 
-                </p>
+                <div class="task-carousel">
+                <!-- Six videos with poster extracted via Python script -->
+                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
+                        poster="static/thumbnails/experiments/metric/moon/0001404_00000/latent_9/videos/gen_video_290.jpg" preload="metadata">
+                        <source src="static/videos/experiments/metric/moon/0001404_00000/latent_9/videos/gen_video_290.mp4" type="video/mp4" /></video>
+                    </div>
+                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
+                        poster="static/thumbnails/experiments/metric/blender/0000702_00002latent_9/videos/gen_video_195.jpg" preload="metadata">
+                        <source src="static/videos/experiments/metric/blender/0000702_00002/latent_9/videos/gen_video_195.mp4" type="video/mp4" /></video>
+                    </div>
+                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
+                        poster="static/thumbnails/experiments/metric/game/0001302_00000/latent_2/videos/gen_video_222.jpg" preload="metadata">
+                        <source src="static/videos/experiments/metric/game/0001302_00000/latent_2/videos/gen_video_222.mp4" type="video/mp4" /></video>
+                    </div>
+                </div>
+                <br>
             </div>
 
 
@@ -494,36 +547,51 @@
                 <h3 class="title is-4 task-title">Are the total predictive uncertainty estimates computed by S-QUBED calibrated?</h3>
                 <!-- Result plot-->
                 <img src="./static/images/total_pred_unc.png" class="real-exp-img" alt="Calibration Plot." />
-                <div class="task-carousel">
-                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/gs/0-annotated.jpg" preload="metadata">
-                            <source src="static/videos/experiments/gs/0-annotated.mp4" type="video/mp4" />
-                        </video></div>
-                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
-                            poster="static/thumbnails/sexperiments/gs/1-annotatedim1.jpg" preload="metadata">
-                            <source src="static/videos/experiments/gs/1-annotated.mp4" type="video/mp4" />
-                        </video></div>
-                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/gs/2-annotated.jpg" preload="metadata">
-                            <source src="static/videos/experiments/gs/2-annotated.mp4" type="video/mp4" />
-                        </video></div>
-                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/gs/3-annotated.jpg" preload="metadata">
-                            <source src="static/videos/experiments/gs/3-annotated.mp4" type="video/mp4" />
-                        </video></div>
-                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/gs/4-annotated.jpg" preload="metadata">
-                            <source src="static/videos/experiments/gs/4-annotated.mp4" type="video/mp4" />
-                        </video></div>
-                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/gs/5-annotated.jpg" preload="metadata">
-                            <source src="static/videos/experiments/gs/5-annotated.mp4" type="video/mp4" />
-                        </video></div>
+
+                <p class="has-text-justified" style="margin-top: 1rem; margin-bottom: 1rem;">
+                    Total Predictive Uncertainty for Video Models. We assess the calibration of the
+                    total predictive uncertainty computed by S-QUBED. Top: correlation between video prediction
+                    accuracy and total uncertainty for Panda-70M and VidGen-1M . We observe a statistically significant
+                    correlation between accuracy and uncertainty for both datasets, signified by the small p-values.
+                    Bottom: visualization of two samples from Panda-70M.
+                </p>
+
+                <h5 class="title is-6 task-title">Ground-Truth Videos</h5>
+                <div class="task-carousel-exp">
+                    <div class="video-thumb">
+                        <video class="thumb-video" autoplay loop muted playsinline
+                            poster="static/thumbnails/experiments/decompose/lab/0001316_00001.jpg" preload="metadata">
+                            <source src="static/videos/experiments/decompose/lab/0001316_00001.mp4" type="video/mp4" /></video>
+                        <div style="display: flex; justify-content: center; align-items: center; margin-top: 0.5rem;">
+                            <img src="static/images/a_icon.png" alt="A" class="real-exp-img" style="width: 3rem;" />
+                        </div>
+                    </div>
+                    <div class="video-thumb">
+                        <video class="thumb-video" autoplay loop muted playsinline
+                            poster="static/thumbnails/sexperiments/decompose/cooking/0000134_00001.jpg" preload="metadata">
+                            <source src="static/videos/experiments/decompose/cooking/0000134_00001.mp4" type="video/mp4" /></video>
+                        <div style="display: flex; justify-content: center; align-items: center; margin-top: 0.5rem;">
+                            <img src="static/images/b_icon.png" alt="B" class="real-exp-img" style="width: 2.5rem;" />
+                        </div>    
+                    </div>
                 </div>
                 <br>
-
-                <!-- Performance plot -->
-                <img src="./static/images/gsplat_results.png" class="real-exp-img" alt="PyBullet Evaluation." />
+                
+                <h5 class="title is-6 task-title">Generated Videos</h5>
+                <div class="task-carousel-exp">
+                    <!-- Six videos with poster extracted via Python script -->
+                    <!-- TODO: add more generated videos -->
+                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
+                        poster="static/thumbnails/experiments/decompose/lab_gen/gen_video_200.jpg" preload="metadata">
+                        <source src="static/videos/experiments/decompose/lab_gen/gen_video_200.mp4" type="video/mp4" /></video>
+                    <p>"A man is sitting… laboratory and talking to the camera…blue shirt… a jar of peanuts…"</p>
+                    </div>
+                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
+                        poster="static/thumbnails/experiments/decompose/cooking_gen/gen_video_203.jpg" preload="metadata">
+                        <source src="static/videos/experiments/decompose/cooking_gen/gen_video_203.mp4" type="video/mp4" /></video>
+                    <p>"A woman is cooking food in a white pot on a gas stove."</p>
+                    </div>
+                </div>
             </div>
 
             <!-- ===== Q3: Decomposition ===== -->
@@ -531,38 +599,69 @@
                 <h3 class="title is-4 task-title">Can S-QUBED effectively estimate both aleatoric and epistemic uncertainty?</h3>
                 <!-- Result plot-->
                 <img src="./static/images/decomposed_pred_unc.png" class="real-exp-img" alt="Calibration Plot." />
-                <div class="task-carousel-exp">
+
+                <p class="has-text-justified" style="margin-top: 1rem; margin-bottom: 1rem;">
+                    Disentangling Aleatoric and Epistemic Uncertainty for Video Models. We demonstrate
+                    the calibration of the aleatoric uncertainty estimates of S-QUBED in tasks with no epistemic uncertainty, 
+                    showing statistically significant negative correlation. We do the same for epistemic uncertainty.
+                </p>
+                
+                <h5 class="title is-6 task-title">Ground-Truth Videos</h5>
+                
+                <div class="task-carousel">
                     <div class="video-thumb"><video class="thumb-video" controls onloadstart="this.playbackRate = 1.0;"
                             autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/evaluations/0-annotated.jpg" preload="metadata">
-                            <source src="static/videos/experiments/evaluations/0-annotated.mp4" type="video/mp4" />
-                        </video></div>
+                            poster="static/thumbnails/experiments/decompose/cat/0001620_00001.jpg" preload="metadata">
+                            <source src="static/videos/experiments/decompose/cat/0001620_00001.mp4" type="video/mp4" /></video>
+                        <p><strong>Low aleatoric:</strong> "A black cat with blue eyes is sitting on a blue carpet looking at the camera."</p>
+                    </div>
                     <div class="video-thumb"><video class="thumb-video" controls onloadstart="this.playbackRate = 1.0;"
                             autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/evaluations/1-annotated.jpg" preload="metadata">
-                            <source src="static/videos/experiments/evaluations/1-annotated.mp4" type="video/mp4" />
-                        </video></div>
+                            poster="static/thumbnails/experiments/decompose/school/0000403_00002.jpg" preload="metadata">
+                            <source src="static/videos/experiments/decompose/school/0000403_00002.mp4" type="video/mp4" /></video>
+                        <p><strong>High aleatoric:</strong> "A display of pictures and information about a school."</p>
+                    </div>
                     <div class="video-thumb"><video class="thumb-video" controls onloadstart="this.playbackRate = 1.0;"
                             autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/evaluations/2-annotated.jpg" preload="metadata">
-                            <source src="static/videos/experiments/evaluations/2-annotated.mp4" type="video/mp4" />
-                        </video></div>
+                            poster="static/thumbnails/experiments/decompose/beard/0001919_00002.jpg" preload="metadata">
+                            <source src="static/videos/experiments/decompose/beard/0001919_00002.mp4" type="video/mp4" /></video>
+                        <p><strong>Low epistemic:</strong>"A man with a beard is talking into a microphone while sitting at a desk."</p>
+                    </div>
                     <div class="video-thumb"><video class="thumb-video" controls onloadstart="this.playbackRate = 1.0;"
                             autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/evaluations/3-annotated.jpg" preload="metadata">
-                            <source src="static/videos/experiments/evaluations/3-annotated.mp4" type="video/mp4" />
-                        </video></div>
-                    <div class="video-thumb"><video class="thumb-video" controls onloadstart="this.playbackRate = 1.0;"
-                            autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/evaluations/5-annotated.jpg" preload="metadata">
-                            <source src="static/videos/experiments/evaluations/5-annotated.mp4" type="video/mp4" />
-                        </video></div>
-                    <div class="video-thumb"><video class="thumb-video" controls onloadstart="this.playbackRate = 1.0;"
-                            autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/evaluations/4-annotated.jpg" preload="metadata">
-                            <source src="static/videos/experiments/evaluations/4-annotated.mp4" type="video/mp4" />
-                        </video></div>
+                            poster="static/thumbnails/experiments/decompose/logo/0001804_00000.jpg" preload="metadata">
+                            <source src="static/videos/experiments/decompose/logo/0001804_00000.mp4" type="video/mp4" />
+                        </video>
+                        <p><strong>High epistemic:</strong> "The logo for behind the gloves is on a black background."</p>
+                    </div>
                 </div>
+                <br>
+
+                <h5 class="title is-6 task-title">Generated Videos</h5>
+                <div class="task-carousel">
+                    <div class="video-thumb"><video class="thumb-video" controls onloadstart="this.playbackRate = 1.0;"
+                            autoplay loop muted playsinline
+                            poster="static/thumbnails/experiments/decompose/cat_gen/gen_video_203.jpg" preload="metadata">
+                            <source src="static/videos/experiments/decompose/cat_gen/gen_video_203.mp4" type="video/mp4" /></video>
+                    </div>
+                    <div class="video-thumb"><video class="thumb-video" controls onloadstart="this.playbackRate = 1.0;"
+                            autoplay loop muted playsinline
+                            poster="static/thumbnails/experiments/decompose/school_gen/gen_video_223.jpg" preload="metadata">
+                            <source src="static/videos/experiments/decompose/school_gen/gen_video_223.mp4" type="video/mp4" /></video>
+                    </div>
+                    <div class="video-thumb"><video class="thumb-video" controls onloadstart="this.playbackRate = 1.0;"
+                            autoplay loop muted playsinline
+                            poster="static/thumbnails/experiments/decompose/beard_gen/gen_video_113.jpg" preload="metadata">
+                            <source src="static/videos/experiments/decompose/beard_gen/gen_video_113.mp4" type="video/mp4" /></video>
+                    </div>
+                    <div class="video-thumb"><video class="thumb-video" controls onloadstart="this.playbackRate = 1.0;"
+                            autoplay loop muted playsinline
+                            poster="static/thumbnails/experiments/decompose/ogo_gen/gen_video_21.jpg" preload="metadata">
+                            <source src="static/videos/experiments/decompose/logo_gen/gen_video_21.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
