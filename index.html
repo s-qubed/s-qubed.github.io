@@ -6,11 +6,170 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>How Confident are Video Models? Empowering Video Models to Express their Uncertainty</title>
 
+    <!--  =====  SCRIPTS  =====  -->
+    <script>
+
+        function updateInteractive_unc(unc_class) {
+            var task = document.getElementById("interative-menu-" + unc_class + "-unc").value;
+
+            var carousel = document.getElementById("results-carousel-" + unc_class + "-unc")
+
+            // update the relevant elements
+            const values = ["low", "high"]
+
+            // update the relevant elements
+            for (const val of values) {
+                // ground-truth
+                if (unc_class === "epistemic") {
+                    var videos = carousel.querySelectorAll("." + unc_class + "_unc_" + val + "_run_gt");
+                    videos.forEach(video => {
+                        video.src = "./static/videos/overviews/" + unc_class + "_unc/" + task + "/gt_" + val + "_run.mp4"
+                        video.poster = "./static/thumbnails/overviews/" + unc_class + "_unc/" + task + "/gt_" + val + "_run.jpg"
+                    });
+                };
+
+                for (let t_idx = 0; t_idx < 2; t_idx++) {
+                    // update element
+                    var videos = carousel.querySelectorAll("." + unc_class + "_unc_" + val + "_run_" + t_idx);
+                    videos.forEach(video => {
+                        video.src = "./static/videos/overviews/" + unc_class + "_unc/" + task + "/" + val + "_run_" + t_idx + ".mp4"
+                        video.poster = "./static/thumbnails/overviews/" + unc_class + "_unc/" + task + "/" + val + "_run_" + t_idx + ".jpg"
+                    });
+                };
+
+            };
+
+            // update the text annotation
+
+            for (const val of values) {
+                // set display to none
+                var text = carousel.querySelectorAll(".text_" + unc_class + "_unc_" + val);
+                text.forEach(text => {
+                    text.style.display = "none";
+                });
+
+                // enable display
+                var text = carousel.querySelectorAll("#text_" + unc_class + "_unc_" + val + "_" + task);
+                text.forEach(text => {
+                    text.style.display = "inline-block";
+                });
+            };
+
+        }
+
+        function updateInteractive_human_annotated_unc(unc_class) {
+            var task = document.getElementById("interative-menu-" + unc_class + "-annotated" + "-unc").value;
+
+            var carousel = document.getElementById("results-carousel-" + unc_class + "-annotated" + "-unc")
+
+            // update the function parameter
+            unc_class = unc_class + "_annotated"
+
+            // update the relevant elements
+            const values = ["low", "med", "high"]
+
+            // update the relevant elements
+            for (const val of values) {
+                // ground-truth
+                var videos = carousel.querySelectorAll("." + unc_class + "_unc_" + val + "_gt");
+                videos.forEach(video => {
+                    video.src = "./static/videos/experiments/metric/ground_truth/sample_" + task + "/" + val + "_unc.mp4"
+                    video.poster = "./static/thumbnails/experiments/metric/ground_truth/sample_" + task + "/" + val + "_unc.jpg"
+                });
+
+                for (let t_idx = 0; t_idx < 3; t_idx++) {
+                    // update element
+                    var videos = carousel.querySelectorAll("." + unc_class + "_unc_" + val + "_generated_" + t_idx);
+                    videos.forEach(video => {
+                        video.src = "./static/videos/experiments/metric/generated/sample_" + task + "/" + val + "_unc_" + t_idx + ".mp4"
+                        video.poster = "./static/thumbnails/experiments/metric/generated/sample_" + task + "/" + val + "_unc_" + t_idx + ".jpg"
+                    });
+                };
+            };
+
+            // update the text annotation
+
+            for (const val of values) {
+                // set display to none
+                var text = carousel.querySelectorAll(".text_" + unc_class + "_unc_" + val + "_gt");
+                text.forEach(text => {
+                    text.style.display = "none";
+                });
+
+                // enable display
+                var text = carousel.querySelectorAll("#text_" + unc_class + "_unc_" + val + "_gt_sample_" + task);
+                text.forEach(text => {
+                    text.style.display = "inline-block";
+                });
+
+            };
+
+        }
+
+        function updateInteractive_decompose_unc(unc_class) {
+            var task = document.getElementById("interative-menu-" + unc_class + "-unc").value;
+
+            var carousel = document.getElementById("results-carousel-" + unc_class + "-unc")
+
+            // update the relevant elements
+            const values = ["low", "med", "high"]
+
+            // ground-truth 
+            for (const val of values) {
+                // update element
+                var videos = carousel.querySelectorAll("." + unc_class + "_unc_" + val + "_gt");
+
+                console.log("./static/thumbnails/experiments/decomposition/" + task + "/ground_truth/" + val + "_unc.jpg")
+
+                videos.forEach(video => {
+                    video.src = "./static/videos/experiments/decomposition/" + task + "/ground_truth/" + val + "_unc.mp4"
+                    video.poster = "./static/thumbnails/experiments/decomposition/" + task + "/ground_truth/" + val + "_unc.jpg"
+                });
+            };
+
+            // generated videos
+            for (let t_idx = 0; t_idx < 3; t_idx++) {
+
+                for (const val of values) {
+                    // update element
+                    var videos = carousel.querySelectorAll("." + unc_class + "_unc_" + val + "_generated_" + t_idx);
+                    videos.forEach(video => {
+                        video.src = "./static/videos/experiments/decomposition/" + task + "/generated/" + val + "_unc_" + t_idx + ".mp4"
+                        video.poster = "./static/thumbnails/experiments/decomposition/" + task + "/generated/" + val + "_unc_" + t_idx + ".jpg"
+                    });
+                };
+
+            };
+
+            // update the text annotation
+            for (const val of values) {
+                // update element
+                // set display to none
+                var text = carousel.querySelectorAll(".text_" + unc_class + "_unc_" + val + "_gt");
+                text.forEach(text => {
+                    text.style.display = "none";
+                });
+            };
+
+            // enable display
+            for (const val of values) {
+                // update element
+                var text = carousel.querySelectorAll("#text_" + unc_class + "_unc_" + val + "_gt_" + task);
+                text.forEach(text => {
+                    text.style.display = "inline-block";
+                });
+            };
+
+        }
+
+
+    </script>
+
     <!--  =====  FONTS & ICONS  =====  -->
     <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-    <link rel="icon" href="./static/icon.png" />
+    <link rel="icon" href="./static/assets/icon.png" />
 
     <!--  =====  CSS  =====  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css" />
@@ -118,6 +277,10 @@
             display: block;
         }
 
+        .thumb-video video {
+            border-radius: 5px;
+        }
+
         /* --- STAND‑ALONE VIDEOS --- */
         .overview-video,
         .sim-video {
@@ -196,11 +359,30 @@
         }
 
         /* default Bulma ≈2.5rem */
+        .rounded-textbox {
+            background-color: #ADD8E6;
+            /* Light blue background color */
+            color: #333;
+            /* Dark gray text color */
+            padding: 10px;
+            /* Space between text and box edges */
+            border-radius: 5px;
+            /* Rounded corners */
+            width: fit-content;
+            /* Optional: Set a fixed width */
+            text-align: center;
+            /* Optional: Center the text */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            /* Optional: Add a subtle shadow */
+        }
+
+        /* default Bulma ≈2.5rem */
         #sim-robot.section {
             padding-top: 2.5rem;
         }
 
         /* default Bulma ≈2.5rem */
+
 
         /* --- SIMULATION ↔ BIBTEX GAP (shrink) --- */
         #BibTeX.section {
@@ -224,10 +406,11 @@
                 <h1 class="title is-2 publication-title">
                     <div style="display: flex; align-items: center; justify-content: center;">
                         <div style="flex: 0 0 18%; text-align: center;">
-                            <img src="static/icon.gif" alt="Icon" style="height: 3.5em; max-width: 100%;">
+                            <img src="static/assets/icon.gif" alt="Icon" style="height: 3.5em; max-width: 100%;">
                         </div>
                         <div style="flex: 0 0 82%; text-align: left;">
-                            How Confident are Video Models?  <br /> <span style="font-size: xx-large;"> Empowering Video Models to Express their Uncertainty </span>
+                            How Confident are Video Models? <br /> <span style="font-size: xx-large;"> Empowering Video
+                                Models to Express their Uncertainty </span>
                         </div>
                     </div>
                 </h1>
@@ -235,7 +418,7 @@
                 <!-- ===== AUTHORS (three rows, no underscores) ===== -->
 
                 <div class="is-size-5 publication-authors">
-                    <div>   
+                    <div>
                         <span class="author-block"><a href="https://may0mei.github.io/">Zhiting&nbsp;Mei*</a></span>,
                         <span class="author-block"><a href="#">Ola&nbsp;Shorinwa*</a></span>,
                         <span class="author-block"><a
@@ -246,30 +429,30 @@
                     <sup>&#42;</sup>Equal Contribution.
                 </div>
 
-                <!-- ===== RESOURCE ICONS ===== --> <!-- TODO -->
+                <!-- ===== RESOURCE ICONS ===== -->
                 <div class="publication-links">
+                    <a href="./static/papers/paper.pdf" class="external-link button is-normal is-rounded is-dark"
+                        target="_blank" rel="noopener">
+                        <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span>
+                    </a>
                     <a href="#" class="external-link button is-normal is-rounded is-dark" target="_blank"
                         rel="noopener">
-                        <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper (Coming Soon!)</span>
-                    </a> 
-                    <a href="#" class="external-link button is-normal is-rounded is-dark"
-                        target="_blank" rel="noopener">
                         <span class="icon"><i class="ai ai-arxiv"></i></span><span>arXiv (Coming Soon!)</span>
                     </a>
-                    <a href="#"
-                        class="external-link button is-normal is-rounded is-dark" target="_blank" rel="noopener">
-                        <span class="icon"><i class="fab fa-youtube"></i></span><span>Video (Coming Soon!)</span>
-                    </a>
                     <a href="#" class="external-link button is-normal is-rounded is-dark" target="_blank"
                         rel="noopener">
-                        <span class="icon"><i class="fab fa-github"></i></span><span>Code (Coming Soon!)</span>
+                        <span class="icon"><i class="fab fa-youtube"></i></span><span>Video (Coming Soon!)</span>
+                    </a>
+                    <a href="https://github.com/irom-princeton/s_qubed"
+                        class="external-link button is-normal is-rounded is-dark" target="_blank" rel="noopener">
+                        <span class="icon"><i class="fab fa-github"></i></span><span>Code</span>
                     </a>
                 </div>
 
                 <!-- ===== LAB LOGO ===== -->
 
                 <figure class="image is-inline-block lab-logo">
-                    <img src="static/irom_princeton.png" alt="IROM Lab logo" style="max-width:500px;">
+                    <img src="static/assets/irom_princeton.png" alt="IROM Lab logo" style="max-width:500px;">
                 </figure>
 
             </div>
@@ -279,13 +462,17 @@
     <!-- ===== OVERVIEW ===== -->
     <section id="overview" class="section">
         <div class="container is-max-desktop content-container has-text-centered">
-            <video class="overview-video" autoplay loop muted playsinline poster="static/thumbnails/banner.jpg">
+            <video class="overview-video" autoplay loop muted playsinline
+                poster="static/thumbnails/overviews/banner.jpg">
                 <source src="static/videos/overviews/banner.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
             <p style="margin-top:1rem;">We introduce
-                <strong>Semantically-Quantifying&nbsp;Uncertainty&nbsp;with&nbsp;Bayesin&nbsp;Decomposition (S-QUBED)</strong>, a method to
-                quantify the uncertainty for generative video models.
+                a framework for uncertainty
+                quantification of generative video models and present
+                <strong>Semantically-Quantifying&nbsp;Uncertainty&nbsp;with&nbsp;Bayesin&nbsp;Decomposition
+                    (S-QUBED)</strong>, a method to
+                for disentangling aleatoric uncertainty from epistemic uncertainty.
             </p>
         </div>
     </section>
@@ -297,15 +484,17 @@
             <p>
                 Generative video models demonstrate impressive text-to-video capabilities,
                 spurring widespread adoption in many real-world applications. However, like
-                large language models (LLMs), video generation models tend to hallucinate, pro-
-                ducing plausible videos even when they are factually wrong. Although uncertainty
+                large language models (LLMs), video generation models tend to hallucinate,
+                producing plausible videos
+                even when they are factually wrong. Although uncertainty
                 quantification (UQ) of LLMs has been extensively studied in prior work, no UQ
-                method for video models exists, raising critical safety concerns. To our knowl-
-                edge, this paper represents the first work towards quantifying the uncertainty of
+                method for video models exists, raising critical safety concerns. To our knowledge,
+                this paper
+                represents the first work towards quantifying the uncertainty of
                 video models. We present a framework for uncertainty quantification of generative
                 video models, consisting of: (i) a metric for evaluating the calibration of video
                 models based on robust rank correlation estimation with no stringent modeling
-                assumptions; (ii) a black-box UQ method for video models (termed S-QUBED),
+                assumptions; (ii) a black-box UQ method for video models (termed <strong>S-QUBED</strong>),
                 which leverages latent modeling to rigorously decompose predictive uncertainty
                 into its aleatoric and epistemic components; and (iii) a UQ dataset to facilitate
                 benchmarking calibration in video models, which will be released after the review
@@ -327,116 +516,282 @@
     <!-- ===== Architecture ===== -->
     <section id="architecture" class="section">
         <div class="container is-max-desktop content-container">
-            <h2 class="title is-3 has-text-centered">S-QUBED Method</h2>
-            <video class="overview-video" autoplay loop muted playsinline poster="static/thumbnails/architecture.jpg">
+            <h2 class="title is-3 has-text-centered">Uncertainty Quantification via S-QUBED</h2>
+            <video class="overview-video" autoplay loop muted playsinline
+                poster="static/thumbnails/overviews/architecture.jpg">
                 <source src="static/videos/overviews/architecture.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
             <br>
             <p>
-            Given a text prompt <img src="static/images/l.svg" alt="ℓ" style="display: inline; height: 1em; vertical-align: baseline;">, our goal is to quantify the uncertainty
-            of the video generation model. We first generate n latent prompts consistent with <img src="static/images/l.svg" alt="ℓ" style="display: inline; height: 1em; vertical-align: baseline;"> in line with the
-            prompt refinement used by video models, modeling the aleatoric uncertainty as the entropy of the
-            distribution over latent prompts. Then, for each latent prompt, we generate m videos, modeling the
-            epistemic uncertainty as the conditional entropy of the distribution over generated videos. Finally,
-            aggregating the two types of uncertainties yields the total predictive uncertainty.
+                Given a text prompt <img src="static/images/architecture/l.svg" alt="ℓ"
+                    style="display: inline; height: 1em; vertical-align: baseline;">, S-CUBED quantifies the
+                uncertainty
+                of video generation models via latent modeling.
+                First, our method generates <em>n</em> latent prompts consistent with
+                <img src="static/images/architecture/l.svg" alt="ℓ"
+                    style="display: inline; height: 1em; vertical-align: baseline;">
+                in line with the
+                prompt refinement used by video models, modeling the aleatoric uncertainty as the entropy of the
+                distribution over latent prompts.
+                Then, for each latent prompt, S-CUBED generates <em>m</em> videos,
+                modeling the
+                epistemic uncertainty as the conditional entropy of the distribution over generated videos.
+                Finally,
+                aggregating the two types of uncertainties yields the total predictive uncertainty.
             </p>
         </div>
-        
+
         <!-- ===== Aleatoric ===== -->
         <div class="container is-max-desktop content-container">
             <h3 class="title is-4 has-text-centered" style="margin-top: 3rem;">Aleatoric Uncertainty</h3>
-                <p>
-                    Aleatoric uncertainty encompasses irreducible randomness from the vagueness (lack of sufficient
-                    specificity) of the conditioning inputs, e.g., “generate a video of a cat doing something.” In video
-                    generation, vagueness in the input prompt increases the randomnes of the generation of latent prompts.
-                </p>
-                <div style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
-                    <div style="flex: 0 0 40%; text-align: center; margin: 0 1rem;">
-                        <video class="thumb-video" autoplay loop muted playsinline
-                            poster="static/thumbnails/overviews/cat_doing_something_0.jpg" preload="metadata">
-                            <source src="static/videos/overviews/cat_doing_something_0.mp4" type="video/mp4" />
-                        </video>
+            <p>
+                Aleatoric uncertainty encompasses irreducible randomness from the vagueness (lack of sufficient
+                specificity) of the conditioning inputs, e.g., “generate a video of a cat doing something.” In video
+                generation, vagueness in the input prompt increases the randomnes of the generation of latent prompts.
+            </p>
+
+            <div class="columns" style="text-align: center;">
+                <div class="column">
+                    <div style="padding-bottom: 10px; padding-top: 5px; display: flex;">
+                        <p>
+                            We show examples of different levels of aleatoric uncertainty for different generation
+                            tasks:
+                        </p>
                     </div>
-                    <div style="flex: 0 0 40%; text-align: center; margin: 0 1rem;">
-                        <video class="thumb-video" autoplay loop muted playsinline
-                            poster="static/thumbnails/overviews/cat_doing_something_1.jpg" preload="metadata">
-                            <source src="static/videos/overviews/cat_doing_something_1.mp4" type="video/mp4" />
-                        </video>
-                    </div>
-                </div>
-                    <p style="text-align: left;"><strong>High aleatoric unc:</strong> "Generate a video of a cat doing something."</p>
-                <div style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
-                    <div style="flex: 0 0 40%; text-align: center; margin: 0 1rem;">
-                        <video class="thumb-video" autoplay loop muted playsinline
-                            poster="static/thumbnails/overviews/cat_napping_0.jpg" preload="metadata">
-                            <source src="static/videos/overviews/cat_napping_0.mp4" type="video/mp4" />
-                        </video>
-                    </div>
-                    <div style="flex: 0 0 40%; text-align: center; margin: 0 1rem;">
-                        <video class="thumb-video" autoplay loop muted playsinline
-                            poster="static/thumbnails/overviews/cat_napping_1.jpg" preload="metadata">
-                            <source src="static/videos/overviews/cat_napping_1.mp4" type="video/mp4" />
-                        </video>
+                    <div class="select is-rounded">
+                        <select id="interative-menu-aleatoric-unc" onchange="updateInteractive_unc('aleatoric')">
+                            <option value="cat" selected="selected">Animals</option>
+                            <option value="robot">Robots</option>
+                        </select>
                     </div>
                 </div>
-                <p style="text-align: left;"><strong>Low aleatoric unc:</strong> "A close-up shot of a tabby cat napping on a couch with lots of sunlight coming in through the windows."</p>
+
             </div>
 
-        <!-- ===== Epistemic ===== -->
-        <div class="container is-max-desktop content-container">
-            <h3 class="title is-4 has-text-centered" style="margin-top: 3rem;">Epistemic Uncertainty</h3>
+
+            <div class="container">
+                <div id="results-carousel-aleatoric-unc" class="carousel results-carousel">
+                    <!-- ===== High Aleatoric ===== -->
+                    <div style="display: flex; align-items: center;">
+                        <div class="rounded-textbox" , style="background-color: #C85E17; color: white;">
+                            High:
+                        </div>
+                        <div style=" display: inline-block; padding: 5px;">
+                            <p style="text-align: left;" id="text_aleatoric_unc_high_cat"
+                                class="text_aleatoric_unc_high"> <em>Generate a video of a cat
+                                    doing
+                                    something.</em>
+                            </p>
+                        </div>
+                        <div style=" display: inline-block; padding: 5px;">
+                            <p style="text-align: left; display: none;" id="text_aleatoric_unc_high_robot"
+                                class="text_aleatoric_unc_high">
+                                <em>Generate a video of a robot manipulator in a room.</em>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
+                        <div class="thumb-video" style="flex: 0 0 40%; text-align: center; margin: 0 1rem;">
+                            <video poster="static/thumbnails/overviews/cat/high_run_0.jpg" preload="metadata"
+                                class="aleatoric_unc_high_run_0" autoplay controls muted loop playsinline height="100%">
+                                <source src="./static/videos/overviews/aleatoric_unc/cat/high_run_0.mp4"
+                                    type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="thumb-video" style="flex: 0 0 40%; text-align: center; margin: 0 1rem;">
+                            <video poster="static/thumbnails/overviews/cat/high_run_1.jpg" preload="metadata"
+                                class="aleatoric_unc_high_run_1" autoplay controls muted loop playsinline height="100%">
+                                <source src="./static/videos/overviews/aleatoric_unc/cat/high_run_1.mp4"
+                                    type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+
+                    <hr>
+
+
+                    <!-- ===== Low Aleatoric ===== -->
+                    <div style="display: flex; align-items: center;">
+                        <div class="rounded-textbox" , style="background-color: #c85e1757;">
+                            Low:
+                        </div>
+                        <div style=" display: inline-block; padding: 5px;">
+                            <p style="text-align: left;" id="text_aleatoric_unc_low_cat" class="text_aleatoric_unc_low">
+                                <em style="padding-left: 2px;">A close-up shot of a tabby cat napping on
+                                    a couch with lots of sunlight coming in through the windows.</em>
+                            </p>
+                        </div>
+                        <div style=" display: inline-block; padding: 5px;">
+                            <p style="text-align: left; display: none;" id="text_aleatoric_unc_low_robot"
+                                class="text_aleatoric_unc_low"> <em>Generate a factory robot manipulator picking up an
+                                    part.</em>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
+                        <div class="thumb-video" style="flex: 0 0 40%; text-align: center; margin: 0 1rem;">
+                            <video poster="static/thumbnails/overviews/aleatoric_unc/cat/low_run_0.jpg"
+                                preload="metadata" class="aleatoric_unc_low_run_0" autoplay controls muted loop
+                                playsinline height="100%">
+                                <source src="./static/videos/overviews/aleatoric_unc/cat/low_run_0.mp4"
+                                    type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="thumb-video" style="flex: 0 0 40%; text-align: center; margin: 0 1rem;">
+                            <video poster="static/thumbnails/overviews/aleatoric_unc/cat/low_run_1.jpg"
+                                preload="metadata" class="aleatoric_unc_low_run_1" autoplay controls muted loop
+                                playsinline height="100%">
+                                <source src="./static/videos/overviews/aleatoric_unc/cat/low_run_1.mp4"
+                                    type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Epistemic ===== -->
+            <div class="container is-max-desktop content-container">
+                <h3 class="title is-4 has-text-centered" style="margin-top: 3rem;">Epistemic Uncertainty</h3>
 
                 <p>
                     Epistemic uncertainty represents the measure of doubt associated with a lack of knowledge, which
-                    generally results from insufficient training data. 
-                    As a result, epistemic uncertainty isreducible by providing additional training data to the model.
-                    For example, consider a video model trained entirely on internet videos of cats and dogs performing
-                    different activities, e.g., running, eating, jumping, meowing/barking. Now, when asked to generate a
-                    video of “a lion roaring in the wild”, the video model might generate different videos across different
-                    runs, with some showing a large cat meowing in a park with significant tree canopy, others showing a
-                    cat making barking-like sounds in a forest, etc. Although the generated videos are all conditioned
-                    on semantically-consistent latent variables, the generated videos might be semantically-inconsistent,
+                    generally results from insufficient training data.
+                    Although the generated videos are all conditioned
+                    on semantically-consistent latent variables, the generated videos might be
+                    semantically-inconsistent,
                     since the video model has not been trained on videos of lions.
                 </p>
-                <div style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
-                    <div style="flex: 0 0 40%; text-align: center; margin: 0 1rem;">
-                        <video class="thumb-video" autoplay loop muted playsinline
-                            poster="static/thumbnails/overviews/violet_0.jpg" preload="metadata">
-                            <source src="static/videos/overviews/violet_0.mp4" type="video/mp4" />
-                        </video>
+
+                <div class="columns">
+                    <div class="column" style="text-align: center;">
+                        <div style="padding-bottom: 10px; padding-top: 5px; display: flex;">
+                            <p>
+                                We show examples of different levels of epistemic uncertainty
+                                and the ground-truth (GT) for different generation tasks:
+                            </p>
+                        </div>
+                        <div class="select is-rounded">
+                            <select id="interative-menu-epistemic-unc" onchange="updateInteractive_unc('epistemic')">
+                                <option value="anime" selected="selected">Anime</option>
+                                <option value="food">Food</option>
+                            </select>
+                        </div>
                     </div>
-                    <div style="flex: 0 0 40%; text-align: center; margin: 0 1rem;">
-                        <video class="thumb-video" autoplay loop muted playsinline
-                            poster="static/thumbnails/overviews/violet_1.jpg" preload="metadata">
-                            <source src="static/videos/overviews/violet_1.mp4" type="video/mp4" />
-                        </video>
+
+                </div>
+
+
+                <div class="container">
+                    <div id="results-carousel-epistemic-unc" class="carousel results-carousel">
+                        <!-- ===== High Epistemic ===== -->
+                        <div style="display: flex; align-items: center;">
+                            <div class="rounded-textbox" , style="background-color: #E1A205; color: white;">
+                                High:
+                            </div>
+                            <div style=" display: inline-block; padding: 5px;">
+                                <p style="text-align: left;" id="text_epistemic_unc_high_anime"
+                                    class="text_epistemic_unc_high"> <em>Generate a video of Violet Evergarden
+                                        walking with an umbrella.</em>
+                                </p>
+                            </div>
+                            <div style=" display: inline-block; padding: 5px;">
+                                <p style="text-align: left; display: none;" id="text_epistemic_unc_high_food"
+                                    class="text_epistemic_unc_high">
+                                    <em>Generate a video of youpo chemian.</em>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div
+                            style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video poster="./static/videos/overviews/epistemic_unc/anime/gt_high_run.png"
+                                    preload="metadata" class="epistemic_unc_high_run_gt" autoplay muted loop playsinline
+                                    height="100%">
+                                    <source src="./static/videos/overviews/epistemic_unc/anime/gt_high_run.mp4"
+                                        type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video poster="static/thumbnails/overviews/anime/high_run_0.jpg" preload="metadata"
+                                    class="epistemic_unc_high_run_0" autoplay controls muted loop playsinline
+                                    height="100%">
+                                    <source src="./static/videos/overviews/epistemic_unc/anime/high_run_0.mp4"
+                                        type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video poster="static/thumbnails/overviews/food/high_run_1.jpg" preload="metadata"
+                                    class="epistemic_unc_high_run_1" autoplay controls muted loop playsinline
+                                    height="100%">
+                                    <source src="./static/videos/overviews/epistemic_unc/anime/high_run_1.mp4"
+                                        type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+
+                        <hr>
+
+
+                        <!-- ===== Low Epistemic ===== -->
+                        <div style="display: flex; align-items: center;">
+                            <div class="rounded-textbox" , style="background-color: #e1a2055e;">
+                                Low:
+                            </div>
+                            <div style=" display: inline-block; padding: 5px;">
+                                <p style="text-align: left;" id="text_epistemic_unc_low_anime"
+                                    class="text_epistemic_unc_low">
+                                    <em>Generate a video of Luffy walking with
+                                        an
+                                        umbrella.</em>
+                                </p>
+                            </div>
+                            <div style=" display: inline-block; padding: 5px;">
+                                <p style="text-align: left; display: none;" id="text_epistemic_unc_low_food"
+                                    class="text_epistemic_unc_low"> <em>Generate a video of lasagna.</em>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div
+                            style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video poster="./static/videos/overviews/epistemic_unc/anime/gt_low_run.png"
+                                    preload="metadata" class="epistemic_unc_low_run_gt" autoplay muted loop playsinline
+                                    height="100%">
+                                    <source src="./static/videos/overviews/epistemic_unc/anime/gt_low_run.mp4"
+                                        type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video poster="static/thumbnails/overviews/epistemic_unc/anime/low_run_0.jpg"
+                                    preload="metadata" class="epistemic_unc_low_run_0" autoplay controls muted loop
+                                    playsinline height="100%">
+                                    <source src="./static/videos/overviews/epistemic_unc/anime/low_run_0.mp4"
+                                        type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video poster="static/thumbnails/overviews/epistemic_unc/anime/low_run_1.jpg"
+                                    preload="metadata" class="epistemic_unc_low_run_1" autoplay controls muted loop
+                                    playsinline height="100%">
+                                    <source src="./static/videos/overviews/epistemic_unc/anime/low_run_1.mp4"
+                                        type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                    <p style="text-align: left;"><strong>High epistemic unc:</strong> "Generate a video of Violet Evergarden walking with an umbrella."</p>
-                <div style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
-                    <div style="flex: 0 0 40%; text-align: center; margin: 0 1rem;">
-                        <video class="thumb-video" autoplay loop muted playsinline
-                            poster="static/thumbnails/luffy_0/.jpg" preload="metadata">
-                            <source src="static/videos/overviews/luffy_0.mp4" type="video/mp4" />
-                        </video>
-                    </div>
-                    <div style="flex: 0 0 40%; text-align: center; margin: 0 1rem;">
-                        <video class="thumb-video" autoplay loop muted playsinline
-                            poster="static/thumbnails/overviews/luffy_1.jpg" preload="metadata">
-                            <source src="static/videos/overviews/luffy_1.mp4" type="video/mp4" />
-                        </video>
-                    </div>
-                </div>
-                <p style="text-align: left;"><strong>Low epistemic unc:</strong> "Generate a video of Luffy walking with an umbrella."</p>
             </div>
         </div>
 
     </section>
 
-
-
-    <!-- ===== TODO ===== -->
 
     <!-- ===== Experiments ===== -->
     <section id="experiment-results" class="section">
@@ -450,215 +805,610 @@
             <!-- ===== Q1: Metric ===== -->
             <div class="task-block" id="q1">
                 <h3 class="title is-4 task-title">How do we evaluate uncertainty calibration of video models?</h3>
-                <!-- Result plot-->
-                <img src="./static/images/rank_correlation.png" class="real-exp-img" alt="Calibration Plot." />
-
                 <p class="has-text-justified" style="margin-top: 1rem; margin-bottom: 1rem;">
-                    Calibration Metrics for Video Models. Top: We examine the statistical significance of
-                    the Kendall rank correlation between uncertainty and widely-used perceptual metrics. We find that
-                    the CLIP cosine similarity score provides the most significant correlation. Bottom: With the CLIP
-                    accuracy metric, we observe that low human-annotated uncertainty corresponds to smaller variance
-                    in the generated videos and greater accuracy with respect to the ground-truth video. As uncertainty
-                    increases, video prediction accuracy decreases.
+                    Widely-used calibration metrics, such as the expected calibration error (ECE) and maximum
+                    calibration metrics (MCE) apply
+                    only to evaluation settings with discrete ground-truth answers and errors, e.g., with
+                    multiple-choice questions, making them unsuitable in video generation tasks with real-valued task
+                    errors. Consequently, we propose appropriate metrics for evaluating the calibration of the
+                    uncertainty estimates of video models. Specifically, we examine the Kendall rank correlation
+                    (Kendall's &#964) between the video model's uncertainty estimates and an
+                    applicable accuracy metric, which captures the degree of monotonicity between uncertainty and
+                    accuracy.
+                    Here, we show the statistical significance of
+                    the Kendall rank correlation between human-annotated uncertainty and widely-used perceptual metrics:
+                    structural similarity index measure (SSIM),
+                    peak signal-to-noise ration (PSNR), and
+                    learned perceptual image patch similarity (LPIPS).
+                    We find that
+                    the CLIP cosine similarity score provides the most significant correlation.
                 </p>
-
-
-                <h5 class="title is-6 task-title">Ground-Truth Videos</h5>
-                <div class="task-carousel">
-                    <!-- Six videos with poster extracted via Python script --> 
-                    <!--TODO: fix video caption style-->
-                    <!--TODO: add more videos-->
-                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
-                        poster="static/thumbnails/experiments/metric/moon/0001404_00000.jpg" preload="metadata">
-                        <source src="static/videos/experiments/metric/moon/0001404_00000.mp4" type="video/mp4" /></video>
-                        <p>"A close up of a moon with holes in it."</p>
-                    </div>
-                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
-                        poster="static/thumbnails/experiments/metric/blender/0000702_00002.jpg" preload="metadata">
-                        <source src="static/videos/experiments/metric/blender/0000702_00002.mp4" type="video/mp4" /></video>
-                        <p>"A blender filled with sliced oranges on a counter."</p>
-                    </div>
-                    <!-- <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
-                        poster="static/thumbnails/experiments/powder/0000710_00000.jpg" preload="metadata">
-                        <source src="static/videos/experiments/metric/powder/0000710_00000.mp4" type="video/mp4" /></video>
-                        <p>"There is a white powdery substance in a bowl with the word "flour" written on it."</p>
-                    </div> -->
-                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
-                        poster="static/thumbnails/experiments/metric/game/0001302_00000.jpg" preload="metadata">
-                        <source src="static/videos/experiments/metric/game/0001302_00000.mp4" type="video/mp4" /></video>
-                        <p>"A video game screen showing a list of items."</p>
-                    </div>
-                </div>
-                <br>
-
-                <h5 class="title is-6 task-title">Generated Videos</h5>
-                <div class="task-carousel">
-                    <!-- Six videos with poster extracted via Python script -->
-                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
-                        poster="static/thumbnails/experiments/metric/moon/0001404_00000/latent_2/videos/gen_video_226.jpg" preload="metadata">
-                        <source src="static/videos/experiments/metric/moon/0001404_00000/latent_2/videos/gen_video_226.mp4" type="video/mp4" /></video>
-                    </div>
-                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
-                        poster="static/thumbnails/experiments/metric/blender/0000702_00002latent_0/videos/gen_video_100.jpg" preload="metadata">
-                        <source src="static/videos/experiments/metric/blender/0000702_00002/latent_0/videos/gen_video_100.mp4" type="video/mp4" /></video>
-                    </div>
-                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
-                        poster="static/thumbnails/experiments/metric/game/0001302_00000/latent_0/videos/gen_video_201.jpg" preload="metadata">
-                        <source src="static/videos/experiments/metric/game/0001302_00000/latent_0/videos/gen_video_201.mp4" type="video/mp4" /></video>
-                    </div>
-                </div>
-                <div class="task-carousel">
-                    <!-- Six videos with poster extracted via Python script -->
-                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
-                        poster="static/thumbnails/experiments/metric/moon/0001404_00000/latent_7/videos/gen_video_274.jpg" preload="metadata">
-                        <source src="static/videos/experiments/metric/moon/0001404_00000/latent_7/videos/gen_video_274.mp4" type="video/mp4" /></video>
-                    </div>
-                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
-                        poster="static/thumbnails/experiments/metric/blender/0000702_00002latent_1/videos/gen_video_110.jpg" preload="metadata">
-                        <source src="static/videos/experiments/metric/blender/0000702_00002/latent_1/videos/gen_video_110.mp4" type="video/mp4" /></video>
-                    </div>
-                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
-                        poster="static/thumbnails/experiments/metric/game/0001302_00000/latent_1/videos/gen_video_210.jpg" preload="metadata">
-                        <source src="static/videos/experiments/metric/game/0001302_00000/latent_1/videos/gen_video_210.mp4" type="video/mp4" /></video>
-                    </div>
-                </div>
-
-                <div class="task-carousel">
-                <!-- Six videos with poster extracted via Python script -->
-                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
-                        poster="static/thumbnails/experiments/metric/moon/0001404_00000/latent_9/videos/gen_video_290.jpg" preload="metadata">
-                        <source src="static/videos/experiments/metric/moon/0001404_00000/latent_9/videos/gen_video_290.mp4" type="video/mp4" /></video>
-                    </div>
-                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
-                        poster="static/thumbnails/experiments/metric/blender/0000702_00002latent_9/videos/gen_video_195.jpg" preload="metadata">
-                        <source src="static/videos/experiments/metric/blender/0000702_00002/latent_9/videos/gen_video_195.mp4" type="video/mp4" /></video>
-                    </div>
-                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
-                        poster="static/thumbnails/experiments/metric/game/0001302_00000/latent_2/videos/gen_video_222.jpg" preload="metadata">
-                        <source src="static/videos/experiments/metric/game/0001302_00000/latent_2/videos/gen_video_222.mp4" type="video/mp4" /></video>
-                    </div>
-                </div>
-                <br>
-            </div>
-
-
-            <!-- ===== Q2: Total Unc ===== -->
-            <div class="task-block" id="q2">
-                <h3 class="title is-4 task-title">Are the total predictive uncertainty estimates computed by S-QUBED calibrated?</h3>
                 <!-- Result plot-->
-                <img src="./static/images/total_pred_unc.png" class="real-exp-img" alt="Calibration Plot." />
+                <img src="./static/images/experiments/metric/rank_correlation.png" class="real-exp-img"
+                    alt="Calibration Plot." />
 
-                <p class="has-text-justified" style="margin-top: 1rem; margin-bottom: 1rem;">
-                    Total Predictive Uncertainty for Video Models. We assess the calibration of the
-                    total predictive uncertainty computed by S-QUBED. Top: correlation between video prediction
-                    accuracy and total uncertainty for Panda-70M and VidGen-1M . We observe a statistically significant
-                    correlation between accuracy and uncertainty for both datasets, signified by the small p-values.
-                    Bottom: visualization of two samples from Panda-70M.
-                </p>
 
-                <h5 class="title is-6 task-title">Ground-Truth Videos</h5>
-                <div class="task-carousel-exp">
-                    <div class="video-thumb">
-                        <video class="thumb-video" autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/decompose/lab/0001316_00001.jpg" preload="metadata">
-                            <source src="static/videos/experiments/decompose/lab/0001316_00001.mp4" type="video/mp4" /></video>
-                        <div style="display: flex; justify-content: center; align-items: center; margin-top: 0.5rem;">
-                            <img src="static/images/a_icon.png" alt="A" class="real-exp-img" style="width: 3rem;" />
+                <div class="columns">
+                    <div class="column" style="text-align: center;">
+                        <div style="padding-bottom: 10px; padding-top: 5px; display: flex;">
+                            <p>
+                                We visualize ground-truth and generated videos at low, medium, and high
+                                human-labeled uncertainty values (from left to right).
+                            </p>
+                        </div>
+                        <div class="select is-rounded">
+                            <select id="interative-menu-human-annotated-unc"
+                                onchange="updateInteractive_human_annotated_unc('human')">
+                                <option value="0" selected="selected">Sample A</option>
+                                <option value="1">Sample B</option>
+                            </select>
                         </div>
                     </div>
-                    <div class="video-thumb">
-                        <video class="thumb-video" autoplay loop muted playsinline
-                            poster="static/thumbnails/sexperiments/decompose/cooking/0000134_00001.jpg" preload="metadata">
-                            <source src="static/videos/experiments/decompose/cooking/0000134_00001.mp4" type="video/mp4" /></video>
-                        <div style="display: flex; justify-content: center; align-items: center; margin-top: 0.5rem;">
-                            <img src="static/images/b_icon.png" alt="B" class="real-exp-img" style="width: 2.5rem;" />
-                        </div>    
-                    </div>
+
                 </div>
-                <br>
-                
-                <h5 class="title is-6 task-title">Generated Videos</h5>
-                <div class="task-carousel-exp">
-                    <!-- Six videos with poster extracted via Python script -->
-                    <!-- TODO: add more generated videos -->
-                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
-                        poster="static/thumbnails/experiments/decompose/lab_gen/gen_video_200.jpg" preload="metadata">
-                        <source src="static/videos/experiments/decompose/lab_gen/gen_video_200.mp4" type="video/mp4" /></video>
-                    <p>"A man is sitting… laboratory and talking to the camera…blue shirt… a jar of peanuts…"</p>
-                    </div>
-                    <div class="video-thumb"><video class="thumb-video" autoplay loop muted playsinline
-                        poster="static/thumbnails/experiments/decompose/cooking_gen/gen_video_203.jpg" preload="metadata">
-                        <source src="static/videos/experiments/decompose/cooking_gen/gen_video_203.mp4" type="video/mp4" /></video>
-                    <p>"A woman is cooking food in a white pot on a gas stove."</p>
+
+
+                <div class="container">
+                    <div id="results-carousel-human-annotated-unc" class="carousel results-carousel">
+                        <!-- ===== Human-annotated Ground-Truth Videos ===== -->
+                        <!-- #b9e4f9 -->
+                        <div style="display: flex; align-items: center;">
+                            <div class="rounded-textbox" , style="background-color: #b9e4f93d; color: black;">
+                                Ground-Truth Videos
+                            </div>
+                        </div>
+
+                        <div
+                            style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/metric/ground_truth/sample_0/low_unc.jpg"
+                                    preload="metadata" class="human_annotated_unc_low_gt" autoplay muted loop
+                                    playsinline height="100%">
+                                    <source src="./static/videos/experiments/metric/ground_truth/sample_0/low_unc.mp4"
+                                        type="video/mp4" />
+                                </video>
+                                <p style="text-align: left;" id="text_human_annotated_unc_low_gt_sample_0"
+                                    class="text_human_annotated_unc_low_gt">
+                                    <em>A close up of a moon with holes in
+                                        it.</em>
+                                </p>
+                                <p style="text-align: left; display: none;"
+                                    id="text_human_annotated_unc_low_gt_sample_1"
+                                    class="text_human_annotated_unc_low_gt">
+                                    <em>A red SUV on display at a car show.&nbsp;&nbsp;&nbsp;</em>
+                                </p>
+                            </div>
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/metric/ground_truth/sample_0/med_unc.jpg"
+                                    preload="metadata" class="human_annotated_unc_med_gt" autoplay muted loop
+                                    playsinline height="100%">
+                                    <source src="./static/videos/experiments/metric/ground_truth/sample_0/med_unc.mp4"
+                                        type="video/mp4" />
+                                </video>
+                                <p style="text-align: left;" id="text_human_annotated_unc_med_gt_sample_0"
+                                    class="text_human_annotated_unc_med_gt">
+                                    <em>A blender filled with sliced oranges on a
+                                        counter.</em>
+                                </p>
+                                <p style="text-align: left; display: none;"
+                                    id="text_human_annotated_unc_med_gt_sample_1"
+                                    class="text_human_annotated_unc_med_gt">
+                                    <em>A man and a woman sitting next to each other. </em>
+                                </p>
+                            </div>
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/metric/ground_truth/sample_0/high_unc.jpg"
+                                    preload="metadata" class="human_annotated_unc_high_gt" autoplay muted loop
+                                    playsinline height="100%">
+                                    <source src="./static/videos/experiments/metric/ground_truth/sample_0/high_unc.mp4"
+                                        type="video/mp4" />
+                                </video>
+                                <p style="text-align: left;" id="text_human_annotated_unc_high_gt_sample_0"
+                                    class="text_human_annotated_unc_high_gt">
+                                    <em>A video game screen showing a list of items.</em>
+                                </p>
+                                <p style="text-align: left; display: none;"
+                                    id="text_human_annotated_unc_high_gt_sample_1"
+                                    class="text_human_annotated_unc_high_gt">
+                                    <em>The Boston Celtics are playing a basketball game and the crowd...</em>
+                                </p>
+                            </div>
+                        </div>
+
+                        <hr>
+
+
+                        <!-- ===== Human-annotated Generated Videos ===== -->
+                        <div style="display: flex; align-items: center;">
+                            <div class="rounded-textbox" , style="background-color: #b7a8eb30; color: black;">
+                                Generated Videos
+                            </div>
+                        </div>
+
+                        <!-- Latent 0 -->
+                        <div
+                            style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/metric/generated/sample_0/low_unc_0.jpg"
+                                    preload="metadata" class="human_annotated_unc_low_generated_0" autoplay muted loop
+                                    playsinline height="100%">
+                                    <source src="./static/videos/experiments/metric/generated/sample_0/low_unc_0.mp4"
+                                        type="video/mp4" />
+                                </video>
+                            </div>
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/metric/generated/sample_0/med_unc_0.jpg"
+                                    preload="metadata" class="human_annotated_unc_med_generated_0" autoplay muted loop
+                                    playsinline height="100%">
+                                    <source src="./static/videos/experiments/metric/generated/sample_0/med_unc_0.mp4"
+                                        type="video/mp4" />
+                                </video>
+                            </div>
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/metric/generated/sample_0/high_unc_0.jpg"
+                                    preload="metadata" class="human_annotated_unc_high_generated_0" autoplay muted loop
+                                    playsinline height="100%">
+                                    <source src="./static/videos/experiments/metric/generated/sample_0/high_unc_0.mp4"
+                                        type="video/mp4" />
+                                </video>
+                            </div>
+                        </div>
+
+                        <!-- Latent 1 -->
+                        <div
+                            style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/metric/generated/sample_0/low_unc_1.jpg"
+                                    preload="metadata" class="human_annotated_unc_low_generated_1" autoplay muted loop
+                                    playsinline height="100%">
+                                    <source src="./static/videos/experiments/metric/generated/sample_0/low_unc_1.mp4"
+                                        type="video/mp4" />
+                                </video>
+                            </div>
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/metric/generated/sample_0/med_unc_1.jpg"
+                                    preload="metadata" class="human_annotated_unc_med_generated_1" autoplay muted loop
+                                    playsinline height="100%">
+                                    <source src="./static/videos/experiments/metric/generated/sample_0/med_unc_1.mp4"
+                                        type="video/mp4" />
+                                </video>
+                            </div>
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/metric/generated/sample_0/high_unc_1.jpg"
+                                    preload="metadata" class="human_annotated_unc_high_generated_1" autoplay muted loop
+                                    playsinline height="100%">
+                                    <source src="./static/videos/experiments/metric/generated/sample_0/high_unc_1.mp4"
+                                        type="video/mp4" />
+                                </video>
+                            </div>
+                        </div>
+
+                        <!-- Latent 2 -->
+                        <div
+                            style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/metric/generated/sample_0/low_unc_2.jpg"
+                                    preload="metadata" class="human_annotated_unc_low_generated_2" autoplay muted loop
+                                    playsinline height="100%">
+                                    <source src="./static/videos/experiments/metric/generated/sample_0/low_unc_2.mp4"
+                                        type="video/mp4" />
+                                </video>
+                            </div>
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/metric/generated/sample_0/med_unc_2.jpg"
+                                    preload="metadata" class="human_annotated_unc_med_generated_2" autoplay muted loop
+                                    playsinline height="100%">
+                                    <source src="./static/videos/experiments/metric/generated/sample_0/med_unc_2.mp4"
+                                        type="video/mp4" />
+                                </video>
+                            </div>
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/metric/generated/sample_0/high_unc_2.jpg"
+                                    preload="metadata" class="human_annotated_unc_high_generated_2" autoplay muted loop
+                                    playsinline height="100%">
+                                    <source src="./static/videos/experiments/metric/generated/sample_0/high_unc_2.mp4"
+                                        type="video/mp4" />
+                                </video>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- ===== Q3: Decomposition ===== -->
-            <div class="task-block" id="q3">
-                <h3 class="title is-4 task-title">Can S-QUBED effectively estimate both aleatoric and epistemic uncertainty?</h3>
-                <!-- Result plot-->
-                <img src="./static/images/decomposed_pred_unc.png" class="real-exp-img" alt="Calibration Plot." />
+            <br>
 
+
+            <!-- ===== Q2: S-CUBED Total Uncertainty ===== -->
+            <div class="task-block" id="q2">
+                <h3 class="title is-4 task-title">Are the total predictive uncertainty estimates computed by S-QUBED
+                    calibrated?</h3>
                 <p class="has-text-justified" style="margin-top: 1rem; margin-bottom: 1rem;">
-                    Disentangling Aleatoric and Epistemic Uncertainty for Video Models. We demonstrate
-                    the calibration of the aleatoric uncertainty estimates of S-QUBED in tasks with no epistemic uncertainty, 
-                    showing statistically significant negative correlation. We do the same for epistemic uncertainty.
+                    We examine the calibration of our uncertainty estimates in VidGen-1M and Panda-70M, using the CLIP
+                    score accuracy metric given its effectiveness in assessing calibration.
+                    We first compute the total predictive uncertainty associated with each video task using S-CUBED,
+                    and then evaluate the Kendall rank correlation. We define the accuracy of each task as the mean CLIP
+                    score across all generated videos for that task.
+                    <br>
+                    The results indicate a statistically significant
+                    correlation between accuracy and uncertainty for both datasets, signified by the small p-values.
                 </p>
-                
-                <h5 class="title is-6 task-title">Ground-Truth Videos</h5>
-                
-                <div class="task-carousel">
-                    <div class="video-thumb"><video class="thumb-video" controls onloadstart="this.playbackRate = 1.0;"
-                            autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/decompose/cat/0001620_00001.jpg" preload="metadata">
-                            <source src="static/videos/experiments/decompose/cat/0001620_00001.mp4" type="video/mp4" /></video>
-                        <p><strong>Low aleatoric:</strong> "A black cat with blue eyes is sitting on a blue carpet looking at the camera."</p>
+
+                <!-- Result plot-->
+                <img src="./static/images/experiments/method_calibration/total_pred_unc.png" class="real-exp-img"
+                    alt="Calibration Plot." />
+
+                <div class="columns">
+                    <div class="column" style="text-align: center;">
+                        <div style="padding-bottom: 10px; padding-top: 5px; display: flex;">
+                            <p>
+                                We visualize two samples with different total uncertainty from Panda-70M, denoted by
+                                <em>A</em> and <em>B</em>.
+                            </p>
+                        </div>
                     </div>
-                    <div class="video-thumb"><video class="thumb-video" controls onloadstart="this.playbackRate = 1.0;"
-                            autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/decompose/school/0000403_00002.jpg" preload="metadata">
-                            <source src="static/videos/experiments/decompose/school/0000403_00002.mp4" type="video/mp4" /></video>
-                        <p><strong>High aleatoric:</strong> "A display of pictures and information about a school."</p>
-                    </div>
-                    <div class="video-thumb"><video class="thumb-video" controls onloadstart="this.playbackRate = 1.0;"
-                            autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/decompose/beard/0001919_00002.jpg" preload="metadata">
-                            <source src="static/videos/experiments/decompose/beard/0001919_00002.mp4" type="video/mp4" /></video>
-                        <p><strong>Low epistemic:</strong>"A man with a beard is talking into a microphone while sitting at a desk."</p>
-                    </div>
-                    <div class="video-thumb"><video class="thumb-video" controls onloadstart="this.playbackRate = 1.0;"
-                            autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/decompose/logo/0001804_00000.jpg" preload="metadata">
-                            <source src="static/videos/experiments/decompose/logo/0001804_00000.mp4" type="video/mp4" />
-                        </video>
-                        <p><strong>High epistemic:</strong> "The logo for behind the gloves is on a black background."</p>
+
+                </div>
+
+                <!-- Annotated visualizations for total uncertainty -->
+                <div class="container">
+                    <div id="results-carousel-s_cubed-unc" class="carousel results-carousel">
+                        <!-- ===== S-CUBED Ground-Truth Videos ===== -->
+                        <div style="display: flex; align-items: center;">
+                            <div class="rounded-textbox" , style="background-color: #b9e4f93d; color: black;">
+                                Ground-Truth Videos
+                            </div>
+                        </div>
+
+                        <div
+                            style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
+                            <div class="thumb-video" style="flex: 0 0 45%; text-align: center; margin: 0 1rem;">
+                                <div style="display: flex; align-items: center;">
+                                    <img src="./static/images/experiments/method_calibration/a_icon.png" alt="A"
+                                        class="real-exp-img" style="width: 3rem;" />
+                                    <em>
+                                        Lower total uncertainty
+                                    </em>
+                                </div>
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/calibration/ground_truth/low/low_unc_0.jpg"
+                                    preload="metadata" class="s_cubed_unc_low_gt" autoplay muted loop playsinline
+                                    height="100%">
+                                    <source src="./static/videos/experiments/calibration/ground_truth/low/low_unc_0.mp4"
+                                        type="video/mp4" />
+                                </video>
+                                <p style="text-align: left;" id="text_s_cubed_unc_low_gt_sample_0"
+                                    class="text_s_cubed_unc_low_gt">
+                                    <em>
+                                        A man is sitting... laboratory and talking to the camera... blue shirt... a jar
+                                        of
+                                        peanuts...
+                                    </em>
+                                </p>
+                            </div>
+                            <div class="thumb-video" style="flex: 0 0 45%; text-align: center; margin: 0 1rem;">
+                                <div style="display: flex; align-items: center;">
+                                    <img src="./static/images/experiments/method_calibration/b_icon.png" alt="B"
+                                        class="real-exp-img" style="width: 2.5rem;" />
+                                    <em style="padding-left: 5px;">
+                                        Higher total uncertainty
+                                    </em>
+                                </div>
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/calibration/ground_truth/high/high_unc_0.jpg"
+                                    preload="metadata" class="s_cubed_unc_high_gt" autoplay muted loop playsinline
+                                    height="100%">
+                                    <source
+                                        src="./static/videos/experiments/calibration/ground_truth/high/high_unc_0.mp4"
+                                        type="video/mp4" />
+                                </video>
+                                <p style="text-align: left;" id="text_s_cubed_unc_high_gt_sample_0"
+                                    class="text_s_cubed_unc_high_gt">
+                                    <em>
+                                        A woman is cooking food in a white pot on a gas stove.
+                                    </em>
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <hr>
+
+
+                        <!-- ===== Human-annotated Generated Videos ===== -->
+                        <div style="display: flex; align-items: center;">
+                            <div class="rounded-textbox" , style="background-color: #b7a8eb30; color: black;">
+                                Generated Videos
+                            </div>
+                        </div>
+
+                        <!-- S-Cubed Calibration: Generated Videos -->
+                        <div
+                            style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
+                            <div class="thumb-video" style="flex: 0 0 45%; text-align: center; margin: 0 1rem;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/calibration/generated/low/low_unc_0.jpg"
+                                    preload="metadata" class="s_cubed_unc_low_generated" autoplay muted loop playsinline
+                                    height="100%">
+                                    <source src="./static/videos/experiments/calibration/generated/low/low_unc_0.mp4"
+                                        type="video/mp4" />
+                                </video>
+                            </div>
+                            <div class="thumb-video" style="flex: 0 0 45%; text-align: center; margin: 0 1rem;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/calibration/generated/high/high_unc_0.jpg"
+                                    preload="metadata" class="s_cubed_unc_high_generated" autoplay muted loop
+                                    playsinline height="100%">
+                                    <source src="./static/videos/experiments/calibration/generated/high/high_unc_0.mp4"
+                                        type="video/mp4" />
+                                </video>
+                            </div>
+
+                        </div>
+
                     </div>
                 </div>
-                <br>
 
-                <h5 class="title is-6 task-title">Generated Videos</h5>
-                <div class="task-carousel">
-                    <div class="video-thumb"><video class="thumb-video" controls onloadstart="this.playbackRate = 1.0;"
-                            autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/decompose/cat_gen/gen_video_203.jpg" preload="metadata">
-                            <source src="static/videos/experiments/decompose/cat_gen/gen_video_203.mp4" type="video/mp4" /></video>
+
+
+            </div>
+
+            <!-- ===== Q3: Uncertainty Decomposition ===== -->
+            <div class="task-block" id="q3">
+                <h3 class="title is-4 task-title">Can S-QUBED effectively estimate both aleatoric and epistemic
+                    uncertainty?</h3>
+
+                <p class="has-text-justified" style="margin-top: 1rem; margin-bottom: 1rem;">
+                    We examine the performance of \algname in decomposing total uncertainty into aleatoric and epistemic
+                    uncertainty.
+                    To effectively assess calibration of aleatoric uncertainty, we consider a subset of each dataset
+                    where
+                    the epistemic uncertainty is almost zero and compute the rank correlation between the aleatoric
+                    uncertainty of these samples and the CLIP score.
+                    Likewise, to evaluate calibration of epistemic uncertainty, we compute the rank correlation between
+                    the
+                    epistemic uncertainty and the CLIP score for samples with relatively zero aleatoric uncertainty. In
+                    practice, we select samples with the lowest aleatoric or epistemic uncertainty, accordingly.
+
+                    <br>
+
+                    In Panda-70M, we find that aleatoric and epistemic uncertainty are negatively correlated with
+                    accuracy
+                    at the 94.5% and 98.3% confidence level.
+
+                    Similarly, in VidGen-1M, we observe a statistically significant negative correlation between
+                    aleatoric and
+                    epistemic
+                    uncertainty and the accuracy at the 92.3% and 91.7%, respectively, demonstrating the effectiveness
+                    of S-CUBED in disentangling aleatorci uncertainty from epistemic uncertainty.
+                </p>
+
+                <!-- Result plot-->
+                <img src="./static/images/experiments/decomposition/decomposed_pred_unc.png" class="real-exp-img"
+                    alt="Calibration Plot." />
+
+
+                <!-- Visualizations for aleatoric and epistemic uncertainty -->
+                <div class="columns">
+                    <div class="column" style="text-align: center;">
+                        <div style="padding-bottom: 10px; padding-top: 5px; display: flex;">
+                            <p>
+                                We show ground-truth and generated videos at low, medium, and high
+                                aleatoric and epistemic uncertainty (from left to right).
+                            </p>
+                        </div>
+                        <div class="select is-rounded">
+                            <select id="interative-menu-decompose-unc"
+                                onchange="updateInteractive_decompose_unc('decompose')">
+                                <option value="aleatoric" selected="selected">Aleatoric</option>
+                                <option value="epistemic">Epistemic</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="video-thumb"><video class="thumb-video" controls onloadstart="this.playbackRate = 1.0;"
-                            autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/decompose/school_gen/gen_video_223.jpg" preload="metadata">
-                            <source src="static/videos/experiments/decompose/school_gen/gen_video_223.mp4" type="video/mp4" /></video>
-                    </div>
-                    <div class="video-thumb"><video class="thumb-video" controls onloadstart="this.playbackRate = 1.0;"
-                            autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/decompose/beard_gen/gen_video_113.jpg" preload="metadata">
-                            <source src="static/videos/experiments/decompose/beard_gen/gen_video_113.mp4" type="video/mp4" /></video>
-                    </div>
-                    <div class="video-thumb"><video class="thumb-video" controls onloadstart="this.playbackRate = 1.0;"
-                            autoplay loop muted playsinline
-                            poster="static/thumbnails/experiments/decompose/ogo_gen/gen_video_21.jpg" preload="metadata">
-                            <source src="static/videos/experiments/decompose/logo_gen/gen_video_21.mp4" type="video/mp4" />
-                        </video>
+
+                </div>
+
+
+                <div class="container">
+                    <div id="results-carousel-decompose-unc" class="carousel results-carousel">
+                        <!-- ===== Decomposition Ground-Truth Videos ===== -->
+                        <div style="display: flex; align-items: center;">
+                            <div class="rounded-textbox" , style="background-color: #b9e4f93d; color: black;">
+                                Ground-Truth Videos
+                            </div>
+                        </div>
+
+
+                        <div
+                            style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/decomposition/aleatoric/ground_truth/low_unc.jpg"
+                                    preload="metadata" class="decompose_unc_low_gt" autoplay muted loop playsinline
+                                    height="100%">
+                                    <source
+                                        src="./static/videos/experiments/decomposition/aleatoric/ground_truth/low_unc.mp4"
+                                        type="video/mp4" />
+                                </video>
+                                <p style="text-align: left;" id="text_decompose_unc_low_gt_aleatoric"
+                                    class="text_decompose_unc_low_gt">
+                                    <em>A black cat with blue eyes is sitting on a blue carpet
+                                        looking at the camera.</em>
+                                </p>
+                                <p style="text-align: left; display: none;" id="text_decompose_unc_low_gt_epistemic"
+                                    class="text_decompose_unc_low_gt">
+                                    <em>A man with a beard is talking into a microphone while sitting
+                                        at a desk.</em>
+                                </p>
+                            </div>
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/decomposition/aleatoric/ground_truth/med_unc.jpg"
+                                    preload="metadata" class="decompose_unc_med_gt" autoplay muted loop playsinline
+                                    height="100%">
+                                    <source
+                                        src="./static/videos/experiments/decomposition/aleatoric/ground_truth/med_unc.mp4"
+                                        type="video/mp4" />
+                                </video>
+                                <p style="text-align: left;" id="text_decompose_unc_med_gt_aleatoric"
+                                    class="text_decompose_unc_med_gt">
+                                    <em>There is a soccer game happening in a stadium and the fans are waving flags and
+                                        cheering.</em>
+                                </p>
+                                <p style="text-align: left; display: none;" id="text_decompose_unc_med_gt_epistemic"
+                                    class="text_decompose_unc_med_gt">
+                                    <em>A person is cooking meat in a slow cooker with spices and a wooden spoon.</em>
+                                </p>
+                            </div>
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/decomposition/aleatoric/ground_truth/high_unc.jpg"
+                                    preload="metadata" class="decompose_unc_high_gt" autoplay muted loop playsinline
+                                    height="100%">
+                                    <source
+                                        src="./static/videos/experiments/decomposition/aleatoric/ground_truth/high_unc.mp4"
+                                        type="video/mp4" />
+                                </video>
+                                <p style="text-align: left;" id="text_decompose_unc_high_gt_aleatoric"
+                                    class="text_decompose_unc_high_gt">
+                                    <em>A display of pictures and information about a
+                                        school.
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;</em>
+                                </p>
+                                <p style="text-align: left; display: none;" id="text_decompose_unc_high_gt_epistemic"
+                                    class="text_decompose_unc_high_gt">
+                                    <em>The logo for behind the gloves is on a black background.</em>
+                                </p>
+                            </div>
+                        </div>
+
+                        <hr>
+
+
+                        <!-- ===== Decomposition Generated Videos ===== -->
+                        <div style="display: flex; align-items: center;">
+                            <div class="rounded-textbox" , style="background-color: #b7a8eb30; color: black;">
+                                Generated Videos
+                            </div>
+                        </div>
+
+                        <!-- Latent 0 -->
+                        <div
+                            style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/decomposition/aleatoric/generated/low_unc_0.jpg"
+                                    preload="metadata" class="decompose_unc_low_generated_0" autoplay muted loop
+                                    playsinline height="100%">
+                                    <source
+                                        src="./static/videos/experiments/decomposition/aleatoric/generated/low_unc_0.mp4"
+                                        type="video/mp4" />
+                                </video>
+                            </div>
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/decomposition/aleatoric/generated/med_unc_0.jpg"
+                                    preload="metadata" class="decompose_unc_med_generated_0" autoplay muted loop
+                                    playsinline height="100%">
+                                    <source
+                                        src="./static/videos/experiments/decomposition/aleatoric/generated/med_unc_0.mp4"
+                                        type="video/mp4" />
+                                </video>
+                            </div>
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/decomposition/aleatoric/generated/high_unc_0.jpg"
+                                    preload="metadata" class="decompose_unc_high_generated_0" autoplay muted loop
+                                    playsinline height="100%">
+                                    <source
+                                        src="./static/videos/experiments/decomposition/aleatoric/generated/high_unc_0.mp4"
+                                        type="video/mp4" />
+                                </video>
+                            </div>
+                        </div>
+
+                        <!-- Latent 1 -->
+                        <div
+                            style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/decomposition/aleatoric/generated/low_unc_1.jpg"
+                                    preload="metadata" class="decompose_unc_low_generated_1" autoplay muted loop
+                                    playsinline height="100%">
+                                    <source
+                                        src="./static/videos/experiments/decomposition/aleatoric/generated/low_unc_1.mp4"
+                                        type="video/mp4" />
+                                </video>
+                            </div>
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/decomposition/aleatoric/generated/med_unc_1.jpg"
+                                    preload="metadata" class="decompose_unc_med_generated_1" autoplay muted loop
+                                    playsinline height="100%">
+                                    <source
+                                        src="./static/videos/experiments/decomposition/aleatoric/generated/med_unc_1.mp4"
+                                        type="video/mp4" />
+                                </video>
+                            </div>
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/decomposition/aleatoric/generated/high_unc_1.jpg"
+                                    preload="metadata" class="decompose_unc_high_generated_1" autoplay muted loop
+                                    playsinline height="100%">
+                                    <source
+                                        src="./static/videos/experiments/decomposition/aleatoric/generated/high_unc_1.mp4"
+                                        type="video/mp4" />
+                                </video>
+                            </div>
+                        </div>
+
+                        <!-- Latent 2 -->
+                        <div
+                            style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/decomposition/aleatoric/generated/low_unc_2.jpg"
+                                    preload="metadata" class="decompose_unc_low_generated_2" autoplay muted loop
+                                    playsinline height="100%">
+                                    <source
+                                        src="./static/videos/experiments/decomposition/aleatoric/generated/low_unc_2.mp4"
+                                        type="video/mp4" />
+                                </video>
+                            </div>
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/decomposition/aleatoric/generated/med_unc_2.jpg"
+                                    preload="metadata" class="decompose_unc_med_generated_2" autoplay muted loop
+                                    playsinline height="100%">
+                                    <source
+                                        src="./static/videos/experiments/decomposition/aleatoric/generated/med_unc_2.mp4"
+                                        type="video/mp4" />
+                                </video>
+                            </div>
+                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/decomposition/aleatoric/generated/high_unc_2.jpg"
+                                    preload="metadata" class="decompose_unc_high_generated_2" autoplay muted loop
+                                    playsinline height="100%">
+                                    <source
+                                        src="./static/videos/experiments/decomposition/aleatoric/generated/high_unc_2.mp4"
+                                        type="video/mp4" />
+                                </video>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -668,14 +1418,14 @@
 
 
 
-    <section class="section" id="BibTeX">
+    <!-- <section class="section" id="BibTeX">
         <div class="container is-max-desktop content">
             <h2 class="title">BibTeX</h2>
             <pre><code>
 
         </code></pre>
         </div>
-    </section>
+    </section> -->
 
 
     <br>
