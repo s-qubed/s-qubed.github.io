@@ -30,7 +30,7 @@
   </a>
   <h4 align="center">
   <a href="https://s-qubed.github.io/">Project Page</a> 
-  | <a href= "#">arXiv (Coming Soon)</a>
+  | <a href= "https://www.arxiv.org/abs/2510.02571">arXiv</a>
   | <a href= "https://huggingface.co/datasets/s-qubed/s-qubed">Dataset</a> </h4>
   <div align="center"></div>
 </p>
