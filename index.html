@@ -529,7 +529,7 @@
             <br>
             <p>
                 Given a text prompt <img src="static/images/architecture/l.svg" alt="ℓ"
-                    style="display: inline; height: 1em; vertical-align: baseline;">, S-CUBED quantifies the
+                    style="display: inline; height: 1em; vertical-align: baseline;">, S-QUBED quantifies the
                 uncertainty
                 of video generation models via latent modeling.
                 First, our method generates <em>n</em> latent prompts consistent with
@@ -538,7 +538,7 @@
                 in line with the
                 prompt refinement used by video models, modeling the aleatoric uncertainty as the entropy of the
                 distribution over latent prompts.
-                Then, for each latent prompt, S-CUBED generates <em>m</em> videos,
+                Then, for each latent prompt, S-QUBED generates <em>m</em> videos,
                 modeling the
                 epistemic uncertainty as the conditional entropy of the distribution over generated videos.
                 Finally,
@@ -552,7 +552,7 @@
             <p>
                 Aleatoric uncertainty encompasses irreducible randomness from the vagueness (lack of sufficient
                 specificity) of the conditioning inputs, e.g., “generate a video of a cat doing something.” In video
-                generation, vagueness in the input prompt increases the randomnes of the generation of latent prompts.
+                generation, vagueness in the input prompt increases the randomness of the generation of latent prompts.
             </p>
 
             <div class="columns" style="text-align: center;">
@@ -1034,14 +1034,14 @@
             <br>
 
 
-            <!-- ===== Q2: S-CUBED Total Uncertainty ===== -->
+            <!-- ===== Q2: S-QUBED Total Uncertainty ===== -->
             <div class="task-block" id="q2">
                 <h3 class="title is-4 task-title">Are the total predictive uncertainty estimates computed by S-QUBED
                     calibrated?</h3>
                 <p class="has-text-justified" style="margin-top: 1rem; margin-bottom: 1rem;">
                     We examine the calibration of our uncertainty estimates in VidGen-1M and Panda-70M, using the CLIP
                     score accuracy metric given its effectiveness in assessing calibration.
-                    We first compute the total predictive uncertainty associated with each video task using S-CUBED,
+                    We first compute the total predictive uncertainty associated with each video task using S-QUBED,
                     and then evaluate the Kendall rank correlation. We define the accuracy of each task as the mean CLIP
                     score across all generated videos for that task.
                     <br>
@@ -1068,7 +1068,7 @@
                 <!-- Annotated visualizations for total uncertainty -->
                 <div class="container">
                     <div id="results-carousel-s_cubed-unc" class="carousel results-carousel">
-                        <!-- ===== S-CUBED Ground-Truth Videos ===== -->
+                        <!-- ===== S-QUBED Ground-Truth Videos ===== -->
                         <div style="display: flex; align-items: center;">
                             <div class="rounded-textbox" , style="background-color: #b9e4f93d; color: black;">
                                 Ground-Truth Videos
@@ -1137,7 +1137,7 @@
                             </div>
                         </div>
 
-                        <!-- S-Cubed Calibration: Generated Videos -->
+                        <!-- S-QUBED Calibration: Generated Videos -->
                         <div
                             style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
                             <div class="thumb-video" style="flex: 0 0 45%; text-align: center; margin: 0 1rem;">
@@ -1195,7 +1195,7 @@
                     aleatoric and
                     epistemic
                     uncertainty and the accuracy at the 92.3% and 91.7%, respectively, demonstrating the effectiveness
-                    of S-CUBED in disentangling aleatorci uncertainty from epistemic uncertainty.
+                    of S-QUBED in disentangling aleatorci uncertainty from epistemic uncertainty.
                 </p>
 
                 <!-- Result plot-->
